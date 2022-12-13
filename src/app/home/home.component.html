@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+
+</head>
+<body>
+<nav id="nav-bar-1" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-1-left">
+        <li class="nav-item">
+          <a class="nav-link active"><i class="fa-solid fa-location-dot"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Tầng 2, 134 Khuất Duy Tiến, Thanh Xuân, Hà Nội</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active">|</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active"><i class="fa-solid fa-phone"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">0563.985.555</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" id="nav-1-right">
+        <li class="nav-item">
+          <a class="nav-link"> Giới thiệu </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"> Liên hệ </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"> Tin tức </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"> Đăng nhập </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><i class="fa-brands fa-facebook-f"></i> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><i class="fa-brands fa-instagram"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><i class="fa-brands fa-twitter"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><i class="fa-regular fa-envelope"></i></a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="nav-2 position-relative">
+  <div id="img-logo" class="position-absolute top-0 start-0"><img
+    src="https://ruouvang68.com/wp-content/uploads/2021/10/Ruouvang68.com-logo-1024x290.png" height="90px">
+  </div>
+  <label for="btn-checkout" class="nav__pc-btn">
+    <i class="fa-solid fa-bars"></i>
+  </label>
+
+
+  <div id="search-form" class="position-absolute top-0 start-50 translate-middle-x">
+    <input type="text" class="input-search" placeholder="Tìm kiếm sản phẩm">
+    <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <img class="img-logo-1"
+         src="https://ruouvang68.com/wp-content/uploads/2021/10/Ruouvang68.com-logo-1024x290.png" height="90px">
+  </div>
+  <div id="hot-line" style="margin-top: 10px" class="position-absolute top-0 end-0">
+    <div class="div1">
+      <img src="https://ruouvang68.com/wp-content/uploads/2021/04/m-icon-left-call-0-1.png" class="img"/>
+      <div class="div2">
+        <p style="font-size: 20px"> HOTLINE 24/7
+        </p>
+        <p style="font-size: 20px"> 0563.985.555 </p>
+      </div>
+
+    </div>
+    <div class="bag-shopping">
+      <i class="fa-sharp fa-solid fa-bag-shopping"></i>
+    </div>
+  </div>
+</div>
+<div id="nav-pc-3" class="nav__pc-3 position-relative">
+  <div id="nav-pc-list-1" class="position-absolute top-0 start-0">
+    <ul class="nav__pc-list">
+      <li><a class="nav__item"><h5>
+        Trang chủ
+      </h5>
+      </a>
+      </li>
+      <li>
+        <div class="dropdown" *ngFor="let category of categoryList">
+          <h5 class="dropbtn">{{category.name}} <i class="fa-solid fa-angle-down"></i></h5>
+          <div class="dropdown-content">
+                            <a *ngFor="let brand of category.brandList">{{brand.name}}</a>
+<!--            <a></a>-->
+            <!--            <a href="#">Rượu Vang Ý</a>-->
+            <!--            <a href="#">Rượu Vang Pháp</a>-->
+          </div>
+        </div>
+      </li>
+      <!--      <li>-->
+      <!--        <div class="dropdown">-->
+      <!--          <h5 class="dropbtn">Rượu Vang Ngon <i class="fa-solid fa-angle-down"></i></h5>-->
+      <!--          <div class="dropdown-content">-->
+      <!--            <a href="#">Rượu Vang Đỏ</a>-->
+      <!--            <a href="#">Rượu Vang Trắng</a>-->
+      <!--            <a href="#">Rượu Vang Hồng</a>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </li>-->
+      <!--      <li>-->
+      <!--        <div class="dropdown">-->
+      <!--          <h5 class="dropbtn">Phụ Kiện Rượu Vang <i class="fa-solid fa-angle-down"></i></h5>-->
+      <!--          <div class="dropdown-content">-->
+      <!--            <a href="#">Ly Uống Rượu Vang</a>-->
+      <!--            <a href="#">Đồ Khui Rượu Vang</a>-->
+      <!--            <a href="#">Kệ + Tủ Rượu Vang</a>-->
+      <!--            <a href="#">Bình Thở - Decanter Rượu Vang</a>-->
+      <!--            <a href="#">Giá Treo Ly Rượu Vang</a>-->
+      <!--            <a href="#">Hộp Đựng Rượu Vang</a>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </li>-->
+      <li><a class="nav__item"><h5>
+        Quà Tết
+      </h5>
+      </a>
+      </li>
+      <li><a class="nav__item"><h5>
+        Khuyến Mãi
+      </h5>
+      </a>
+      </li>
+    </ul>
+  </div>
+  <div id="nav__pc-3-cart" class="position-absolute top-0 end-0">
+    <button class="cart-btn">Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i></button>
+  </div>
+</div>
+<div class="nav-search">
+  <input type="text" id="search-form-2" placeholder="Tìm kiếm sản phẩm" size="120">
+  <button id="btn-search-2"><i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+<!--star-carousel-->
+<div class="carousel">
+  <div class="left-carousel">
+    <img id="img-1" src="https://ruouvang68.com/wp-content/uploads/2021/10/banner1.jpg">
+  </div>
+  <div class="right-carousel">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="card" style="width: 18rem;">
+            <img src="https://ruouvang68.com/wp-content/uploads/2022/11/qua-tet-vp-01-300x300.jpg" class="card-img-top">
+            <div class="card-body">
+              <p class="card-text">Hộp quà tết đẹp giá rẻ VP01</p>
+              <h5 class="card-title">800.000</h5>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card" style="width: 18rem;">
+            <img
+              src="https://ruouvang68.com/wp-content/uploads/2022/11/qua-tet-tang-doi-tac-kem-ruou-vang-sang-trong-1-300x300.jpg"
+              class="card-img-top">
+            <div class="card-body">
+              <p class="card-text">Quà tết tặng đối tác kèm rượu vang sang trọng</p>
+              <h5 class="card-title">800.000</h5>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="card" style="width: 18rem;">
+            <img src="https://ruouvang68.com/wp-content/uploads/2022/11/qua-tet-vip-cao-cap-V002-300x300.jpg"
+                 class="card-img-top">
+            <div class="card-body">
+              <p class="card-text">Hộp quà tết cao cấp-Biếu tặng khách hàng VIP-V002</p>
+              <h5 class="card-title">1.250.000</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+              data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+<!--end-carousel-->
+<!--Header-->
+<div class="header">
+  <h2>Rượu vang 68 – rượu vang nhập khẩu chính hãng</h2>
+  <p id="description">Shop rượu vang 68 (ruouvang68.com) là đơn vị nhập khẩu và phân phối rượu vang ngoại chính hãng
+    hàng đầu Việt Nam. Với kinh nghiệm nhiều năm trong lĩnh vực đồ uống nhập khẩu, chúng tôi có những sản phẩm rượu vang
+    ngon nhất, đảm bảo chính hãng 100% với chi phí hợp lý hơn với các khách hàng. Chúng tôi luôn có những sản phẩm đặc
+    biệt, phù hợp với yêu cầu đa dạng của người tiêu dùng từ “newbie” đến sành rượu.</p>
+</div>
+<!--end-header-->
+<!--product-->
+<div class="separator"><h5>SẢN PHẨM BÁN CHẠY</h5></div>
+<!--list-product - 1-->
+<div class="list-product-1">
+  <div>
+    <div class="card" style="width: 20rem;">
+      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
+        <h5 class="card-title">195.000₫</h5>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="width: 20rem;">
+      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
+        <h5 class="card-title">195.000₫</h5>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="width: 20rem;">
+      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
+        <h5 class="card-title">195.000₫</h5>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="width: 20rem;">
+      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
+        <h5 class="card-title">195.000₫</h5>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="width: 20rem;">
+      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
+        <h5 class="card-title">195.000₫</h5>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div id="card-product" class="card" style="width: 20rem;">
+      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
+        <h5 class="card-title">195.000₫</h5>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="width: 20rem;">
+      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
+        <h5 class="card-title">195.000₫</h5>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="width: 20rem;">
+      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
+        <h5 class="card-title">195.000₫</h5>
+      </div>
+    </div>
+  </div>
+
+</div>
+<input class="form-check-input" type="checkbox" hidden id="btn-checkout">
+<label for="btn-checkout" class="nav__overlay">
+</label>
+<nav class="nav__mobile">
+  <label for="btn-checkout" class="nav__mobile-close">
+    <i class="fa-solid fa-xmark"></i>
+  </label>
+  <ul *ngIf="!isShowAllBrand" class="nav__mobile-list">
+    <li>
+      <a href="" class="nav__mobile-link">TRANG CHỦ</a>
+    </li>
+    <hr>
+    <div class="nav-list-23" *ngFor="let category of categoryList">
+      <li >
+        <label (click)="showAllBrandOfCategory(category.id)"  class="nav__mobile-link">{{category.name.toUpperCase()}} <i class="fa-solid fa-chevron-down"></i></label>
+<!--        <input class="form-check-input-1"  type="checkbox" id="list-1">-->
+        <ul class="list-mobile-1">
+          <li class="list-mobile-1-item" *ngFor="let brand of brandList"><a *ngIf="brand.categoryId === category.id && isShowAllBrand"><i style="font-size: 7px" class="fa-solid fa-square"></i> {{brand.name}}</a></li>
+        </ul>
+      </li>
+      <hr>
+    </div>
+    <li>
+      <a href="" class="nav__mobile-link">QUÀ TẾT</a>
+    </li>
+    <hr>
+    <li>
+      <a href="" class="nav__mobile-link">KHUYẾN MÃI</a>
+    </li>
+    <hr>
+    <li>
+      <a href="" class="nav__mobile-link">ĐĂNG NHẬP</a>
+    </li>
+  </ul>
+  <ul class="nav__mobile-list" *ngIf="isShowAllBrand">
+    <li >
+      <h5 style="cursor: pointer" (click)="showSideBar()"   class="nav__mobile-link"><i style="margin-right: 14px; font-size: 20px" class="fa-solid fa-chevron-left"></i> {{category.name.toUpperCase()}}</h5>
+      <ul class="list-mobile-1">
+        <li class="list-mobile-1-item" *ngFor="let brand of brandList"><a>{{brand.name}}</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<!--  <nav class="nav__mobile-list-1">-->
+<!--    <div class="nav-list-12">-->
+<!--        <label class="nav__mobile-link">{{category.name}} <i class="fa-solid fa-chevron-down"></i></label>-->
+<!--        <ul class="list-mobile-1">-->
+<!--          <li class="list-mobile-1-item" *ngFor="let brand of brandList" ><a *ngIf="isShowAllBrand">{{brand.name}}</a></li>-->
+<!--        </ul>-->
+<!--      <hr>-->
+<!--    </div>-->
+<!--  </nav>-->
+
+</body>
+
+
+</html>
