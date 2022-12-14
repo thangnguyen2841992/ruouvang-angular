@@ -1,0 +1,65 @@
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-xl-9 mx-auto">
+      <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+        <div class="card-img-left d-none d-md-flex">
+          <!-- Background image for card set in CSS! -->
+        </div>
+        <div class="card-body p-4 p-sm-5">
+          <h5 class="card-title text-center mb-5 fw-light fs-5">ĐĂNG KÝ TÀI KHOẢN</h5>
+          <form [formGroup]="registerForm">
+
+            <div class="form-floating mb-3">
+              <input formControlName="username" type="text" class="form-control" id="floatingInputUsername" placeholder="Username" required autofocus>
+              <label for="floatingInputUsername">Tên tài khoản</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input formControlName="email" type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com">
+              <label for="floatingInputEmail">Email</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input formControlName="phone" type="number" class="form-control" id="floatingInputPhone" placeholder="01234xxxxx">
+              <label for="floatingInputPhone">Số điện thoại</label>
+            </div>
+            <hr>
+
+            <div class="form-floating mb-3">
+              <input formControlName="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Mật khẩu</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input formControlName="confirm" type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password">
+              <label for="floatingPasswordConfirm">Xác nhận mật khẩu</label>
+            </div>
+
+            <div class="d-grid mb-2">
+              <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">Đăng Ký</button>
+            </div>
+          </form>
+
+            <a routerLink="/login" class="d-block text-center mt-2 small" href="#">Bạn đã có tài khoản? Đăng nhập ngay</a>
+
+            <hr class="my-4">
+
+            <div class="d-grid mb-2">
+              <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="submit">
+                <i class="fab fa-google me-2"></i> Đăng ký với tài khoản Google
+              </button>
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase" type="submit">
+                <i class="fab fa-facebook-f me-2"></i> Đăng ký với tài khoản Facebook
+              </button>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

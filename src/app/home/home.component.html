@@ -38,7 +38,8 @@
           <a class="nav-link"> Tin tức </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link"> Đăng nhập </a>
+          <a *ngIf="username === null" routerLink="/login" class="nav-link"> Đăng nhập </a>
+          <a style="color: #007bff" *ngIf="username !== null" routerLink="/login" class="nav-link">Chào: {{username}} <i class="fa-solid fa-caret-down"></i> </a>
         </li>
         <li class="nav-item">
           <a class="nav-link"><i class="fa-brands fa-facebook-f"></i> </a>
@@ -321,7 +322,8 @@
     </li>
     <hr>
     <li>
-      <a href="" class="nav__mobile-link">ĐĂNG NHẬP</a>
+      <a routerLink="/login" *ngIf="username === null" class="nav__mobile-link">ĐĂNG NHẬP</a>
+      <a style="color: #007bff" *ngIf="username !== null" routerLink="/login" class="nav-link">Chào: {{username}} <i class="fa-solid fa-caret-down"></i> </a>
     </li>
   </ul>
   <ul class="nav__mobile-list" *ngIf="isShowAllBrand">

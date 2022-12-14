@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';import {CategoryService} from '../service/category.service';
+import {Component, OnInit} from '@angular/core';
+import {CategoryService} from '../service/category.service';
 import {Brand} from '../model/brand';
 import {BrandService} from '../service/brand.service';
 import {CategoryDTO} from '../model/categoryDTO';
 import {Category} from '../model/category';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +16,12 @@ export class HomeComponent implements OnInit {
   brandList: Brand[] = [];
   isShowAllBrand = false;
   category: Category = {};
+  username = '';
 
   constructor(private categoryService: CategoryService,
-              private brandService: BrandService) {
+              private brandService: BrandService,
+              private authService: AuthService) {
+    this.username = this.authService.currentUserValue.username;
   }
 
   ngOnInit() {
