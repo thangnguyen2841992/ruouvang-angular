@@ -42,7 +42,7 @@
         </li>
         <li  class="nav-item dropdown">
           <a *ngIf="username !== null" style="color:deepskyblue;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-           Chào: {{username}}
+            Chào: {{username}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a (click)="logout()" class="dropdown-item">Đăng xuất</a></li>
@@ -107,11 +107,11 @@
       </h5>
       </a>
       </li>
-      <li *ngIf="username != null || username == null">
+      <li>
         <div class="dropdown" *ngFor="let category of categoryList">
           <h5 class="dropbtn">{{category.name}} <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content">
-                            <a *ngFor="let brand of category.brandList">{{brand.name}}</a>
+            <a *ngFor="let brand of category.brandList">{{brand.name}}</a>
           </div>
         </div>
       </li>
@@ -290,7 +290,7 @@
     <div class="nav-list-23" *ngFor="let category of categoryList">
       <li >
         <label (click)="showAllBrandOfCategory(category.id)"  class="nav__mobile-link">{{category.name.toUpperCase()}} <i class="fa-solid fa-chevron-down"></i></label>
-<!--        <input class="form-check-input-1"  type="checkbox" id="list-1">-->
+        <!--        <input class="form-check-input-1"  type="checkbox" id="list-1">-->
         <ul class="list-mobile-1">
           <li class="list-mobile-1-item" *ngFor="let brand of brandList"><a *ngIf="brand.categoryId === category.id && isShowAllBrand"><i style="font-size: 7px" class="fa-solid fa-square"></i> {{brand.name}}</a></li>
         </ul>

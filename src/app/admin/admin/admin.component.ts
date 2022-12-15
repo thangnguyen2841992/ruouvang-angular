@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {CategoryService} from '../service/category.service';
-import {Brand} from '../model/brand';
-import {BrandService} from '../service/brand.service';
-import {CategoryDTO} from '../model/categoryDTO';
-import {Category} from '../model/category';
-import {AuthService} from '../service/auth.service';
+import { Component, OnInit } from '@angular/core';
+import {CategoryDTO} from '../../model/categoryDTO';
+import {Brand} from '../../model/brand';
+import {Category} from '../../model/category';
+import {CategoryService} from '../../service/category.service';
+import {BrandService} from '../../service/brand.service';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
-export class HomeComponent implements OnInit {
+export class AdminComponent implements OnInit {
+
   categoryList: CategoryDTO[] = [];
   brandList: Brand[] = [];
   isShowAllBrand = false;
@@ -55,4 +56,5 @@ export class HomeComponent implements OnInit {
   get username() {
     return this.authService.currentUserValue.username;
   }
+
 }

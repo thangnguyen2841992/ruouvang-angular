@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {UserToken} from '../model/user-token';
 import {Router} from '@angular/router';
 import {map} from 'rxjs/operators';
+import {User} from '../model/user';
 
 const API_URL = `${environment.api_url}`;
 
@@ -37,7 +38,6 @@ export class AuthService {
   logout() {
     sessionStorage.removeItem('user');
     this.currentUserSubject.next(null);
-    this.router.navigateByUrl('login');
   }
 
   isLoggedIn() {
@@ -56,5 +56,9 @@ export class AuthService {
       return null;
     }
     return currentUser.id;
+  }
+
+  register(user: User): Observable<User> {
+    return this.http.post<User>(API_URL + '/register', user);
   }
 }

@@ -14,9 +14,6 @@ export class BrandService {
   constructor(private http: HttpClient) {
   }
 
-  getAllBrandOfProject(): Observable<Brand[]> {
-    return this.http.get<Brand[]>(`${API_URL}`);
-  }
   getAllBrandOfCategory(categoryId: number): Observable<Brand[]> {
     return this.http.get<Brand[]>(`${API_URL}/category/${categoryId}`);
   }

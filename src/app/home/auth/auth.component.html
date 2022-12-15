@@ -8,7 +8,7 @@
         </div>
         <div class="card-body p-4 p-sm-5">
           <h5 class="card-title text-center mb-5 fw-light fs-5">ĐĂNG KÝ TÀI KHOẢN</h5>
-          <form [formGroup]="registerForm">
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
 
             <div class="form-floating mb-3">
               <input formControlName="username" type="text" class="form-control" id="floatingInputUsername" placeholder="Username" required autofocus>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-floating mb-3">
-              <input formControlName="confirm" type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password">
+              <input formControlName="confirmPassword" type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password">
               <label for="floatingPasswordConfirm">Xác nhận mật khẩu</label>
             </div>
 
