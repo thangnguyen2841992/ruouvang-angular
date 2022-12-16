@@ -1,16 +1,29 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { AdminRoutingModule } from './admin-routing.module';
-import { AdminComponent } from './admin/admin.component';
-import { CreateProductComponent } from './create-product/create-product.component';
+import {AdminRoutingModule} from './admin-routing.module';
+import {AdminComponent} from './admin/admin.component';
+import {CreateProductComponent} from './create-product/create-product.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../environments/environment.prod';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 
 @NgModule({
   declarations: [AdminComponent, CreateProductComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
+  ],
+  providers: [
+    AngularFireStorage
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+}

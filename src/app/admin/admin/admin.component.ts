@@ -5,6 +5,7 @@ import {Category} from '../../model/category';
 import {CategoryService} from '../../service/category.service';
 import {BrandService} from '../../service/brand.service';
 import {AuthService} from '../../service/auth.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +14,9 @@ import {AuthService} from '../../service/auth.service';
 })
 export class AdminComponent implements OnInit {
   categoryList: CategoryDTO[] = [];
-
+  searchForm: FormGroup = new FormGroup({
+    keyword: new FormControl('', [Validators.required])
+  });
   constructor(private authService: AuthService,
               private categoryService: CategoryService) {
   }
