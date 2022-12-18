@@ -9,10 +9,11 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment.prod';
 import {AngularFireStorage} from '@angular/fire/storage';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, CreateProductComponent],
+  declarations: [AdminComponent, CreateProductComponent, EditProductComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

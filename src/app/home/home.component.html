@@ -110,8 +110,10 @@
       <li *ngIf="username != null || username == null">
         <div class="dropdown" *ngFor="let category of categoryList">
           <h5 class="dropbtn">{{category.name}} <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
-          <div class="dropdown-content">
-                            <a *ngFor="let brand of category.brandList">{{brand.name}}</a>
+          <div class="dropdown-content" style="width: 300px">
+
+                            <a id="brand-name" *ngFor="let brand of category.brandList">{{brand.name}} <hr style="border-top: 1px solid black"></a>
+
           </div>
         </div>
       </li>
@@ -190,7 +192,7 @@
 <!--end-carousel-->
 <!--Header-->
 <div class="header">
-  <h2>Rượu vang 68 – rượu vang nhập khẩu chính hãng</h2>
+  <h1>Rượu vang 68 – rượu vang nhập khẩu chính hãng</h1>
   <p id="description">Shop rượu vang 68 (ruouvang68.com) là đơn vị nhập khẩu và phân phối rượu vang ngoại chính hãng
     hàng đầu Việt Nam. Với kinh nghiệm nhiều năm trong lĩnh vực đồ uống nhập khẩu, chúng tôi có những sản phẩm rượu vang
     ngon nhất, đảm bảo chính hãng 100% với chi phí hợp lý hơn với các khách hàng. Chúng tôi luôn có những sản phẩm đặc
@@ -198,83 +200,35 @@
 </div>
 <!--end-header-->
 <!--product-->
-<div class="separator"><h5>SẢN PHẨM BÁN CHẠY</h5></div>
+<div class="separator"><h2>SẢN PHẨM BÁN CHẠY</h2></div>
 <!--list-product - 1-->
 <div class="list-product-1">
-  <div>
+  <div *ngFor="let product of productList4">
     <div class="card" style="width: 20rem;">
-      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
+      <img src="{{product.image}}" class="card-img-top">
       <div class="card-body">
-        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
-        <h5 class="card-title">195.000₫</h5>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="card" style="width: 20rem;">
-      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
-      <div class="card-body">
-        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
-        <h5 class="card-title">195.000₫</h5>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="card" style="width: 20rem;">
-      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
-      <div class="card-body">
-        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
-        <h5 class="card-title">195.000₫</h5>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="card" style="width: 20rem;">
-      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
-      <div class="card-body">
-        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
-        <h5 class="card-title">195.000₫</h5>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="card" style="width: 20rem;">
-      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
-      <div class="card-body">
-        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
-        <h5 class="card-title">195.000₫</h5>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div id="card-product" class="card" style="width: 20rem;">
-      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
-      <div class="card-body">
-        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
-        <h5 class="card-title">195.000₫</h5>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="card" style="width: 20rem;">
-      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
-      <div class="card-body">
-        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
-        <h5 class="card-title">195.000₫</h5>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="card" style="width: 20rem;">
-      <img src="https://ruouvang68.com/wp-content/uploads/2022/10/Genesis-Cabernet-Sauvignon.jpg" class="card-img-top">
-      <div class="card-body">
-        <p class="card-text">Rượu Vang Đỏ Chile Genesis Cabernet Sauvignon 5.4% ABV*</p>
-        <h5 class="card-title">195.000₫</h5>
+        <p class="card-text">{{product.name}}</p>
+        <h5 class="card-title">{{product.price}}</h5>
       </div>
     </div>
   </div>
 
 </div>
+<div class="separator"><h2>PHỤ KIỆN RƯỢU VANG</h2></div>
+<div class="list-product-2">
+  <div *ngFor="let product of productList3">
+    <div class="card" style="width: 20rem;">
+      <img src="{{product.image}}" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text">{{product.name}}</p>
+        <h5 class="card-title">{{product.price}}₫</h5>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
 <input class="form-check-input" type="checkbox" hidden id="btn-checkout">
 <label for="btn-checkout" class="nav__overlay">
 </label>

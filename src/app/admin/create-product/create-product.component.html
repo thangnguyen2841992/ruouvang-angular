@@ -8,7 +8,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a class="nav-link">Trang chủ</a>
+        <a routerLink="/admin/all" class="nav-link">Trang chủ</a>
       </li>
       <!--      <li class="nav-item d-none d-sm-inline-block">-->
       <!--        <a href="#" class="nav-link">Contact</a>-->
@@ -22,21 +22,6 @@
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>
-<!--        <div class="navbar-search-block">-->
-<!--          <div class="form-inline">-->
-<!--            <div class="input-group input-group-sm">-->
-<!--              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">-->
-<!--              <div class="input-group-append">-->
-<!--                <button class="btn btn-navbar" type="submit">-->
-<!--                  <i class="fas fa-search"></i>-->
-<!--                </button>-->
-<!--                <button class="btn btn-navbar" type="button" data-widget="navbar-search">-->
-<!--                  <i class="fas fa-times"></i>-->
-<!--                </button>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
       </li>
     </ul>
   </nav>
@@ -137,7 +122,7 @@
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-10">
+          <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
@@ -150,12 +135,12 @@
                   <div class="form-group">
                     <label>Category</label>
                     <select formControlName="categoryId" (change)="changeCategoryID($event)" class="form-control select2" style="width: 100%;">
-                      <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+                      <option  *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
                     </select>
                   </div>
                   <label>Brand</label>
                   <div class="form-check" *ngFor="let brand of brandList">
-                    <input (change)="getBrandId($event)"  class="form-check-input" type="radio" name="exampleRadios" value="{{brand.id}}">
+                    <input checked *ngIf="brand.id === brandId" (change)="getBrandId($event)"  class="form-check-input" type="radio" name="exampleRadios" value="{{brand.id}}">
                     <label class="form-check-label">
                       {{brand.name}}
                     </label>
@@ -171,10 +156,6 @@
                   <div class="form-group">
                     <label for="quantity">Số lượng</label>
                     <input formControlName="quantity" type="number" class="form-control" id="quantity" placeholder="Số lượng">
-                  </div>
-                  <div class="form-group">
-                    <label for="description">Mô tả sản phẩm</label>
-                    <input formControlName="description" type="text" class="form-control" id="description" placeholder="Mô tả sản phẩm">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFile">Ảnh sản phẩm</label>

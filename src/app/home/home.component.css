@@ -257,7 +257,7 @@ a {
 }
 a:hover {
   color: blue;
-  text-decoration: blue;
+  text-decoration: underline;
 }
 .list-mobile-1-item:hover {
   color: blue;
@@ -304,8 +304,28 @@ a:hover {
   grid-template-columns: auto auto auto auto;
   grid-row-gap: 40px;
 }
-
-
+.list-product-2 {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-row-gap: 40px;
+}
+/*#brand-name:hover {*/
+/*  */
+/*}*/
+.dropdown-content a {
+  font-size: 18px;
+}
+.dropdown-content a:hover{
+  text-decoration: underline;
+  color:blue;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.nav__item h5:hover{
+  color: yellow;
+  text-decoration: underline;
+}
 @media (min-width: 1800px) {
   #nav-1-left {
     margin-left: 180px;
@@ -348,6 +368,10 @@ a:hover {
 
   }
   .list-product-1 {
+    margin-left: 220px;
+    margin-right: 220px;
+  }
+  .list-product-2 {
     margin-left: 220px;
     margin-right: 220px;
   }

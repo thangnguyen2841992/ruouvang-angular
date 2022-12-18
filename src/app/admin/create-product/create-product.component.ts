@@ -10,6 +10,7 @@ import {ProductService} from '../../service/product.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
@@ -22,23 +23,17 @@ export class CreateProductComponent implements OnInit {
   categoryId = 1;
   brandId = 0;
   brandList: Brand[] = [];
+  imageFile: any;
   imageLink = '';
   categoryDefault: Category = {
     id: 1,
     name: ''
   };
-  brandDefault: Brand = {
-    id: 1,
-    name: '',
-    categoryId: 1
-  };
   productForm: FormGroup = new FormGroup({
     categoryId: new FormControl(this.categoryDefault.id, [Validators.required]),
-    brandId: new FormControl(this.brandDefault.id, [Validators.required]),
     name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     quantity: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
     image: new FormControl('', [Validators.required])
   });
 
@@ -47,6 +42,7 @@ export class CreateProductComponent implements OnInit {
               private brandService: BrandService,
               private productService: ProductService,
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
+              private router: Router
   ) {
   }
 
@@ -68,9 +64,6 @@ export class CreateProductComponent implements OnInit {
   changeCategoryID($event) {
     this.categoryId = $event.target.value;
     this.getAllBrandOfCategory();
-    this.productForm.patchValue({
-      brandId: this.categoryId
-    });
   }
 
   getAllBrandOfCategory() {
@@ -83,11 +76,15 @@ export class CreateProductComponent implements OnInit {
   getBrandId($event) {
     this.brandId = $event.target.value;
   }
-
+  getImage(event) {
+    if (event.target.files.length > 0) {
+      this.imageFile = event.target.files[0];
+    }
+  }
   createNewProduct() {
-    const imageFile = this.getCurrentDateTime() + this.productForm.get('image');
+    const imageFile = this.getCurrentDateTime() + this.imageFile;
     const fileRef = this.storage.ref(imageFile);
-    this.storage.upload(imageFile, this.productForm.get('image')).snapshotChanges().pipe(
+    this.storage.upload(imageFile, this.imageFile).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           this.imageLink = url;
@@ -95,27 +92,20 @@ export class CreateProductComponent implements OnInit {
             name: this.productForm.value.name,
             price: this.productForm.value.price,
             quantity: this.productForm.value.quantity,
-            description: this.productForm.value.description,
             image: this.imageLink,
             categoryId: this.productForm.value.categoryId,
             brandId: this.brandId
           };
           this.productService.createNewProductOfProject(productForm).subscribe(() => {
             alert('Tạo mới sản phẩm thành công!');
+            this.productForm.reset();
           });
         });
       })
     ).subscribe();
   }
 
-  getImage($event) {
-    if ($event.target.files > 0) {
-      const file = $event.target.files[0];
-      this.productForm.patchValue({
-        image: file
-      });
-    }
-  }
+
   getCurrentDateTime(): string {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }

@@ -8,8 +8,11 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a class="nav-link">Trang chủ</a>
+        <a routerLink="/admin/all" class="nav-link">Trang chủ</a>
       </li>
+      <!--      <li class="nav-item d-none d-sm-inline-block">-->
+      <!--        <a href="#" class="nav-link">Contact</a>-->
+      <!--      </li>-->
     </ul>
 
     <!-- Right navbar links -->
@@ -19,21 +22,6 @@
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>
-        <div class="navbar-search-block">
-          <form [formGroup]="searchForm" class="form-inline">
-            <div class="input-group input-group-sm">
-              <input formControlName="keyword" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
       </li>
     </ul>
   </nav>
@@ -43,7 +31,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a routerLink="/admin/all" class="brand-link">
-      <img src="assets/image/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="assets/image/logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
       <span class="brand-text font-weight-light"> RƯỢU VANG 68</span>
     </a>
 
@@ -69,12 +58,12 @@
               <p>
                 THAO TÁC
                 <i class="fas fa-angle-left right"></i>
-<!--                <span class="badge badge-info right">6</span>-->
+                <!--                <span class="badge badge-info right">6</span>-->
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a routerLink="/admin/product/create" class="nav-link">
+                <a class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm mới sản phẩm</p>
                 </a>
@@ -115,12 +104,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Danh sách sản phẩm</h1>
+            <h1 class="m-0">Sửa thông tin sản phẩm</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+              <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+              <li class="breadcrumb-item active">Sửa thông tin sản phẩm</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -132,49 +121,70 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <!-- left column -->
-          <div class="col-md-12">
-            <table class="table">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Ảnh sản phẩm</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Category</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Giá</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Sửa</th>
-                <th scope="col">Xóa</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let product of products index as i">
-                <th scope="row">{{i + 1}}</th>
-                <td><a style="cursor: pointer"><img width="150" height="150" src="{{product.image}}"></a></td>
-                <td><a class="product-name" style="cursor: pointer; color: blue">{{product.name}}</a></td>
-                <td>{{product.category}}</td>
-                <td>{{product.brand}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.quantity}}</td>
-                <td>
-                  <a routerLink="/admin/product/edit/{{product.id}}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
-                <td>
-                  <a class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a></td>
-              </tr>
-              </tbody>
-            </table>
+          <div class="col-lg-3">
+            <img src="{{imageLink}}" alt="ảnh sản phẩm" width="400" height="400px">
           </div>
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+          <!-- /.col-md-6 -->
 
-  <!-- Control Sidebar -->
+            <div class="col-lg-9">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <!-- form start -->
+                <form [formGroup]="productForm">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label>Category</label>
+                      <select formControlName="categoryId" (change)="changeCategoryID($event)" class="form-control select2" style="width: 100%;">
+                        <option  *ngFor="let category of categoryList"  [value]="category.id">{{category.name}}</option>
+                      </select>
+                    </div>
+                    <label>Brand</label>
+                    <div class="form-check" *ngFor="let brand of brandList">
+                      <input (change)="getBrandId($event)"  class="form-check-input" type="radio" name="exampleRadios" value="{{brand.id}}">
+                      <label class="form-check-label">
+                        {{brand.name}}
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label  for="name">Tên sản phẩm</label>
+                      <input formControlName="name" type="text" class="form-control" id="name" placeholder="Tên sản phẩm">
+                    </div>
+                    <div class="form-group">
+                      <label for="price">Giá sản phẩm</label>
+                      <input formControlName="price" type="number" class="form-control" id="price" placeholder="Giá sản phẩm">
+                    </div>
+                    <div class="form-group">
+                      <label for="quantity">Số lượng</label>
+                      <input formControlName="quantity" type="number" class="form-control" id="quantity" placeholder="Số lượng">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputFile">Ảnh sản phẩm</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input (change)="getImage($event)" type="file" class="custom-file-input" id="exampleInputFile">
+                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                        <div class="input-group-append">
+                          <span class="input-group-text">Thêm ảnh</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+
+
+          <!-- /.col-md-6 -->
+        </div>
+      </div>
+    </div>
+  </div>
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
