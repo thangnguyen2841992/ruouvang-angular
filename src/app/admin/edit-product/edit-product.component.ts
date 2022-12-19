@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {CategoryDTO} from '../../model/categoryDTO';
-import {CategoryService} from '../../service/category.service';
+import {OriginService} from '../../service/origin.service';
 import {AuthService} from '../../service/auth.service';
 import {Product} from '../../model/product';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {BrandService} from '../../service/brand.service';
-import {Brand} from '../../model/brand';
+import {AccessoryService} from '../../service/accessory.service';
+import {Accessory} from '../../model/accessory';
+import {Origin} from '../../model/origin';
 
 @Component({
   selector: 'app-edit-product',
@@ -16,19 +16,19 @@ import {Brand} from '../../model/brand';
 })
 export class EditProductComponent implements OnInit {
   productId = 0;
-  categoryList: CategoryDTO[] = [];
+  categoryList: Origin[] = [];
   productForm: FormGroup;
   brandID = 0;
   imageLink = '';
-  brandList: Brand[] = [];
+  brandList: Accessory[] = [];
   categoryId = 0;
 
   constructor(private productService: ProductService,
               private router: Router,
               private activeRouted: ActivatedRoute,
-              private categoryService: CategoryService,
+              private categoryService: OriginService,
               private authService: AuthService,
-              private brandService: BrandService) {
+              private brandService: AccessoryService) {
     this.activeRouted.paramMap.subscribe((paramMap: ParamMap) => {
       this.productId = +paramMap.get('id');
     });
@@ -58,7 +58,7 @@ export class EditProductComponent implements OnInit {
   }
 
   getAllCategoryServiceOfProject() {
-    this.categoryService.getAllCategoryOfProject().subscribe((data) => {
+    this.categoryService.getAllOriginOfProject().subscribe((data) => {
       this.categoryList = data;
     });
   }
@@ -68,7 +68,7 @@ export class EditProductComponent implements OnInit {
   }
 
   getAllBrandOfCategory() {
-    this.brandService.getAllBrandOfCategory(this.categoryId).subscribe((data) => {
+    this.brandService.getAllAccessoryOfCategory().subscribe((data) => {
       this.brandList = data;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.brandList.length; i++) {

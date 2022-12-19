@@ -1,6 +1,5 @@
-export interface Brand {
+export interface Type {
   id?: number;
   name?: string;
-  categoryId?: number;
   checked?: boolean;
 }

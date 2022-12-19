@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryService} from '../service/category.service';
-import {Brand} from '../model/brand';
-import {BrandService} from '../service/brand.service';
-import {CategoryDTO} from '../model/categoryDTO';
-import {Category} from '../model/category';
+import {OriginService} from '../service/origin.service';
+import {Accessory} from '../model/accessory';
+import {AccessoryService} from '../service/accessory.service';
+import {Origin} from '../model/origin';
 import {AuthService} from '../service/auth.service';
 import {Product} from '../model/product';
 import {ProductService} from '../service/product.service';
+import {TypeService} from '../service/type.service';
+import {Observable} from 'rxjs';
+import {Type} from '../model/type';
 
 @Component({
   selector: 'app-home',
@@ -14,30 +16,34 @@ import {ProductService} from '../service/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  categoryList: CategoryDTO[] = [];
-  brandList: Brand[] = [];
+  originList: Origin[] = [];
+  accessoryList: Accessory[] = [];
+  typeList: Type[] = [];
   isShowAllBrand = false;
-  category: Category = {};
+  category: Origin = {};
   productList3: Product[] = [];
   productList4: Product[] = [];
   offset3 = 0;
   offset1and2 = 0;
 
-  constructor(private categoryService: CategoryService,
-              private brandService: BrandService,
+  constructor(private originService: OriginService,
+              private accessoryService: AccessoryService,
+              private typeService: TypeService,
               private authService: AuthService,
               private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.getAllCategory();
+    this.getAllOrigin();
+    this.showAllAccessory();
+    this.showAllType();
     this.getAllProductCategory3();
     this.getAllProductCategory1and2();
   }
 
-  getAllCategory() {
-    this.categoryService.getAllCategoryOfProject().subscribe((data) => {
-      this.categoryList = data;
+  getAllOrigin() {
+    this.originService.getAllOriginOfProject().subscribe((data) => {
+      this.originList = data;
     });
   }
 
@@ -53,14 +59,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  showAllBrandOfCategory(categoryId: number) {
-    this.categoryService.getCategoryById(categoryId).subscribe((data) => {
-      this.category = data;
+  showAllAccessory() {
+    this.accessoryService.getAllAccessoryOfCategory().subscribe((data) => {
+      this.accessoryList = data;
     });
-    this.brandService.getAllBrandOfCategory(categoryId).subscribe((data) => {
-      this.brandList = data;
+  }
+
+  showAllType() {
+    this.typeService.getAllTypeOfProject().subscribe((data) => {
+      this.typeList = data;
     });
-    this.isShowAllBrand = !this.isShowAllBrand;
   }
 
   showSideBar() {

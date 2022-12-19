@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryDTO} from '../../model/categoryDTO';
-import {Brand} from '../../model/brand';
-import {Category} from '../../model/category';
-import {CategoryService} from '../../service/category.service';
-import {BrandService} from '../../service/brand.service';
+import {Accessory} from '../../model/accessory';
+import {Origin} from '../../model/origin';
+import {OriginService} from '../../service/origin.service';
+import {AccessoryService} from '../../service/accessory.service';
 import {AuthService} from '../../service/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../model/product';
@@ -15,14 +14,14 @@ import {ProductService} from '../../service/product.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  categoryList: CategoryDTO[] = [];
   products: Product[] = [];
   offset = 0;
   searchForm: FormGroup = new FormGroup({
     keyword: new FormControl('', [Validators.required])
   });
+
   constructor(private authService: AuthService,
-              private categoryService: CategoryService,
+              private categoryService: OriginService,
               private productService: ProductService) {
   }
 
@@ -36,12 +35,12 @@ export class AdminComponent implements OnInit {
   }
 
   getAllCategoryServiceOfProject() {
-    this.categoryService.getAllCategoryOfProject().subscribe((data) => {
-      this.categoryList = data;
+    this.categoryService.getAllOriginOfProject().subscribe((data) => {
     });
   }
+
   getAllProduct() {
-    this.productService.getAllProductOfProject(this.offset).subscribe((data) =>{
+    this.productService.getAllProductOfProject(this.offset).subscribe((data) => {
       this.products = data;
     });
   }

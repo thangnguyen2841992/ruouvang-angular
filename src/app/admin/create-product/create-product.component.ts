@@ -1,11 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {CategoryDTO} from '../../model/categoryDTO';
 import {AuthService} from '../../service/auth.service';
-import {CategoryService} from '../../service/category.service';
-import {Brand} from '../../model/brand';
-import {BrandService} from '../../service/brand.service';
+import {OriginService} from '../../service/origin.service';
+import {Accessory} from '../../model/accessory';
+import {AccessoryService} from '../../service/accessory.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Category} from '../../model/category';
+import {Origin} from '../../model/origin';
 import {ProductService} from '../../service/product.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {formatDate} from '@angular/common';
@@ -19,13 +18,13 @@ import {Router} from '@angular/router';
 })
 export class CreateProductComponent implements OnInit {
 
-  categoryList: CategoryDTO[] = [];
+  categoryList: Origin[] = [];
   categoryId = 1;
   brandId = 0;
-  brandList: Brand[] = [];
+  brandList: Accessory[] = [];
   imageFile: any;
   imageLink = '';
-  categoryDefault: Category = {
+  categoryDefault: Origin = {
     id: 1,
     name: ''
   };
@@ -38,8 +37,8 @@ export class CreateProductComponent implements OnInit {
   });
 
   constructor(private authService: AuthService,
-              private categoryService: CategoryService,
-              private brandService: BrandService,
+              private categoryService: OriginService,
+              private brandService: AccessoryService,
               private productService: ProductService,
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
               private router: Router
@@ -56,7 +55,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   getAllCategoryServiceOfProject() {
-    this.categoryService.getAllCategoryOfProject().subscribe((data) => {
+    this.categoryService.getAllOriginOfProject().subscribe((data) => {
       this.categoryList = data;
     });
   }
@@ -67,7 +66,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   getAllBrandOfCategory() {
-    this.brandService.getAllBrandOfCategory(this.categoryId).subscribe((data) => {
+    this.brandService.getAllAccessoryOfCategory().subscribe((data) => {
       this.brandList = data;
     });
   }
