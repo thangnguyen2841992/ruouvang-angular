@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {CategoryDTO} from '../../model/categoryDTO';
@@ -22,6 +22,7 @@ export class EditProductComponent implements OnInit {
   imageLink = '';
   brandList: Brand[] = [];
   categoryId = 0;
+
   constructor(private productService: ProductService,
               private router: Router,
               private activeRouted: ActivatedRoute,
@@ -37,6 +38,7 @@ export class EditProductComponent implements OnInit {
   ngOnInit() {
     this.getAllCategoryServiceOfProject();
   }
+
   findProductByID() {
     this.productService.getProductById(this.productId).subscribe((data) => {
       this.productForm = new FormGroup({
@@ -54,19 +56,30 @@ export class EditProductComponent implements OnInit {
       this.imageLink = data.image;
     });
   }
+
   getAllCategoryServiceOfProject() {
     this.categoryService.getAllCategoryOfProject().subscribe((data) => {
       this.categoryList = data;
     });
   }
+
   get username() {
     return this.authService.currentUserValue.username;
   }
+
   getAllBrandOfCategory() {
     this.brandService.getAllBrandOfCategory(this.categoryId).subscribe((data) => {
       this.brandList = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.brandList.length; i++) {
+        this.brandList[i].checked = false;
+        if (this.brandList[i].id === this.brandID) {
+          this.brandList[i].checked = true;
+        }
+      }
     });
   }
+
   changeCategoryID($event) {
     this.categoryId = $event.target.value;
     this.getAllBrandOfCategory();
