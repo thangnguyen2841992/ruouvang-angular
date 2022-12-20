@@ -1,5 +1,6 @@
 export interface ProductEntity {
   id?: number;
+
   name?: string;
 
   price?: number;
@@ -10,7 +11,10 @@ export interface ProductEntity {
 
   image?: string;
 
-  brandId?: number;
+  originId?: number;
 
-  categoryId?: number;
+  accessoryId?: number;
+
+  typeId?: number;
+
 }

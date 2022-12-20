@@ -69,12 +69,12 @@
               <p>
                 THAO TÁC
                 <i class="fas fa-angle-left right"></i>
-<!--                <span class="badge badge-info right">6</span>-->
+                <!--                <span class="badge badge-info right">6</span>-->
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a routerLink="/admin/alcohol/create" class="nav-link">
+                <a routerLink="/admin/product/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm mới rượu vang</p>
                 </a>
@@ -121,12 +121,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Danh sách rượu vang | <a routerLink="/admin/accessory/list" style="color: deepskyblue; cursor: pointer">Danh sách phụ kiện</a></h1>
+            <h1 class="m-0">Danh sách phụ kiện | <a routerLink="/admin/all" style="color: deepskyblue; cursor: pointer">Danh sách rượu vang</a></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Danh sách rượu vang</li>
+              <li class="breadcrumb-item active">Danh sách phụ kiện</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -146,8 +146,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Ảnh sản phẩm</th>
                 <th scope="col">Tên</th>
-                <th scope="col">Xuất xứ</th>
-                <th scope="col">Loại rượu vang</th>
+                <th scope="col">Loại phụ kiện</th>
                 <th scope="col">Giá</th>
                 <th scope="col">Số lượng</th>
                 <th scope="col">Sửa</th>
@@ -159,12 +158,11 @@
                 <th scope="row">{{i + 1}}</th>
                 <td><a style="cursor: pointer"><img width="150" height="150" src="{{product.image}}"></a></td>
                 <td><a class="product-name" style="cursor: pointer; color: blue">{{product.name}}</a></td>
-                <td>{{product.origin}}</td>
-                <td>{{product.type}}</td>
+                <td>{{product.accessory}}</td>
                 <td>{{product.price}}</td>
                 <td>{{product.quantity}}</td>
                 <td>
-                  <a routerLink="/admin/alcohol/edit/{{product.id}}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                  <a routerLink="/admin/accessory/edit/{{product.id}}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
                 <td>
                   <a class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a></td>
               </tr>

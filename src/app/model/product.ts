@@ -10,8 +10,11 @@ export interface Product {
   quantity?: number;
 
   image?: string;
+  accessory?: string;
 
-  brand?: string;
 
-  category?: string;
+  origin?: string;
+
+
+  type?: string;
 }

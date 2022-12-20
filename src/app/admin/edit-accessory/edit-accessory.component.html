@@ -65,67 +65,25 @@
               <li class="nav-item">
                 <a class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm mới rượu vang</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm mới phụ kiện rượu vang</p>
+                  <p>Thêm mới sản phẩm</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngFor="let category of categoryList">
             <a class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Rượu Vang Ngoại
+                {{category.name}}
                 <i class="fas fa-angle-left right"></i>
                 <!--                <span class="badge badge-info right">6</span>-->
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item" *ngFor="let origin of originList">
+              <li class="nav-item" *ngFor="let brand of category.brandList">
                 <a href="pages/layout/top-nav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{{origin.name}}</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Rượu Vang Ngon
-                <i class="fas fa-angle-left right"></i>
-                <!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item" *ngFor="let type of typeList">
-                <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>{{type.name}}</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Phụ Kiện Rượu Vang
-                <i class="fas fa-angle-left right"></i>
-                <!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item" *ngFor="let accessory of accessoryList">
-                <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>{{accessory.name}}</p>
+                  <p>{{brand.name}}</p>
                 </a>
               </li>
             </ul>
@@ -146,12 +104,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">THÊM MỚI RƯỢU VANG</h1>
+            <h1 class="m-0">Sửa thông tin sản phẩm</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Thêm mới rượu vang</li>
+              <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+              <li class="breadcrumb-item active">Sửa thông tin sản phẩm</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -163,34 +121,25 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <!-- left column -->
-          <div class="col-md-12">
+          <div class="col-lg-3">
+            <img src="{{imageLink}}" alt="ảnh sản phẩm" width="400" height="400px">
+          </div>
+          <!-- /.col-md-6 -->
+
+          <div class="col-lg-9">
             <!-- general form elements -->
             <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">THÊM MỚI RƯỢU VANG</h3>
-              </div>
-              <!-- /.card-header -->
               <!-- form start -->
-              <form [formGroup]="productForm" (ngSubmit)="createNewProduct()">
+              <form [formGroup]="productForm">
                 <div class="card-body">
                   <div class="form-group">
-                    <label>Xuất xứ</label>
-                    <div class="form-check" *ngFor="let origin of originList">
-                      <input (change)="getOriginId($event)"  class="form-check-input" type="radio" name="origin" value="{{origin.id}}">
+                    <label>Loại phụ kiện</label>
+                    <div class="form-check" *ngFor="let accessory of accessoryList">
+                      <input [checked]="accessory.checked" (change)="getAccessoryId($event)"  class="form-check-input" type="radio" name="type" value="{{accessory.id}}">
                       <label class="form-check-label">
-                        {{origin.name}}
+                        {{accessory.name}}
                       </label>
                     </div>
-                  </div>
-                  <div class="form-group">
-                  <label>Loại rượu vang</label>
-                  <div class="form-check" *ngFor="let type of typeList">
-                    <input (change)="getTypeId($event)"  class="form-check-input" type="radio" name="type" value="{{type.id}}">
-                    <label class="form-check-label">
-                      {{type.name}}
-                    </label>
-                  </div>
                   </div>
                   <div class="form-group">
                     <label  for="name">Tên sản phẩm</label>
@@ -208,7 +157,7 @@
                     <label for="exampleInputFile">Ảnh sản phẩm</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input formControlName="image" (change)="getImage($event)" type="file" class="custom-file-input" id="exampleInputFile">
+                        <input (change)="getImage($event)" type="file" class="custom-file-input" id="exampleInputFile">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                       <div class="input-group-append">
@@ -217,7 +166,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
@@ -225,6 +173,9 @@
             </div>
 
           </div>
+
+
+          <!-- /.col-md-6 -->
         </div>
       </div>
     </div>

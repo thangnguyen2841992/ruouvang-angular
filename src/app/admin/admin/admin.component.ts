@@ -26,21 +26,16 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllCategoryServiceOfProject();
-    this.getAllProduct();
+    this.getAllAlcohol();
   }
 
   get username() {
     return this.authService.currentUserValue.username;
   }
 
-  getAllCategoryServiceOfProject() {
-    this.categoryService.getAllOriginOfProject().subscribe((data) => {
-    });
-  }
 
-  getAllProduct() {
-    this.productService.getAllProductOfProject(this.offset).subscribe((data) => {
+  getAllAlcohol() {
+    this.productService.getAllAlcoholOfProject(this.offset).subscribe((data) => {
       this.products = data;
     });
   }

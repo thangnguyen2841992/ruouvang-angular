@@ -15,15 +15,11 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  getAllProductOfProject(offset: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${API_URL}?offset=${offset}`);
-  }
-
-  getAllProductCategory3OfProject(offset: number): Observable<Product[]> {
+  getAllAccessoryOfProject(offset: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/accessory?offset=${offset}`);
   }
 
-  getAllProductCategory1and2OfProject(offset: number): Observable<Product[]> {
+  getAllAlcoholOfProject(offset: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/alcohol?offset=${offset}`);
   }
 
@@ -34,4 +30,7 @@ export class ProductService {
   createNewProductOfProject(product): Observable<Product> {
     return this.http.post<Product>(`${API_URL}`, product);
   }
-}
+  editProductOfProject(productId: number, product): Observable<Product> {
+    return this.http.put(`${API_URL}/product/${productId}`, product);
+  }
+ }

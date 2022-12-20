@@ -10,10 +10,13 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment.prod';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { CreateProductAccessoryComponent } from './create-product-accessory/create-product-accessory.component';
+import { ListAccessoryComponent } from './list-accessory/list-accessory.component';
+import { EditAccessoryComponent } from './edit-accessory/edit-accessory.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, CreateProductComponent, EditProductComponent],
+  declarations: [AdminComponent, CreateProductComponent, EditProductComponent, CreateProductAccessoryComponent, ListAccessoryComponent, EditAccessoryComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

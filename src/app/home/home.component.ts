@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
     this.showAllAccessory();
     this.showAllType();
     this.getAllProductCategory3();
-    this.getAllProductCategory1and2();
   }
 
   getAllOrigin() {
@@ -50,12 +49,6 @@ export class HomeComponent implements OnInit {
   getAllProductCategory3() {
     this.productService.getAllProductCategory3OfProject(this.offset3).subscribe((data) => {
       this.productList3 = data;
-    });
-  }
-
-  getAllProductCategory1and2() {
-    this.productService.getAllProductCategory1and2OfProject(this.offset1and2).subscribe((data) => {
-      this.productList4 = data;
     });
   }
 

@@ -1,34 +1,32 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Origin} from '../../model/origin';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Type} from '../../model/type';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {OriginService} from '../../service/origin.service';
 import {AuthService} from '../../service/auth.service';
-import {Product} from '../../model/product';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AccessoryService} from '../../service/accessory.service';
-import {Accessory} from '../../model/accessory';
-import {Origin} from '../../model/origin';
-import {Type} from '../../model/type';
 import {TypeService} from '../../service/type.service';
-import {finalize} from 'rxjs/operators';
-import {formatDate} from '@angular/common';
-import {AngularFireStorage} from '@angular/fire/storage';
+import {Accessory} from '../../model/accessory';
+import {AccessoryService} from '../../service/accessory.service';
 
 @Component({
-  selector: 'app-edit-product',
-  templateUrl: './edit-product.component.html',
-  styleUrls: ['./edit-product.component.css']
+  selector: 'app-edit-accessory',
+  templateUrl: './edit-accessory.component.html',
+  styleUrls: ['./edit-accessory.component.css']
 })
-export class EditProductComponent implements OnInit {
+export class EditAccessoryComponent implements OnInit {
+
   productId = 0;
   originList: Origin[] = [];
   productForm: FormGroup;
   typeId = 0;
+  accessoryId = 0;
   originId = 0;
   imageLink = '';
   typeList: Type[] = [];
   imageFile: any;
-  accessoryId = 0;
+  accessoryList: Accessory[] = [];
 
   constructor(private productService: ProductService,
               private router: Router,
@@ -36,9 +34,7 @@ export class EditProductComponent implements OnInit {
               private originService: OriginService,
               private authService: AuthService,
               private typeService: TypeService,
-              private accessoryService: AccessoryService,
-              @Inject(AngularFireStorage) private storage: AngularFireStorage,
-  ) {
+              private accessoryService: AccessoryService) {
     this.activeRouted.paramMap.subscribe((paramMap: ParamMap) => {
       this.productId = +paramMap.get('id');
     });
@@ -48,6 +44,7 @@ export class EditProductComponent implements OnInit {
     this.findProductByID();
     this.getAllOriginOfProject();
     this.getAllTypeOfProject();
+    this.getAllAccessoryOfProject();
   }
 
   findProductByID() {
@@ -61,6 +58,7 @@ export class EditProductComponent implements OnInit {
       this.originId = data.originId;
       this.typeId = data.typeId;
       this.imageLink = data.image;
+      this.accessoryId = data.accessoryId;
     });
   }
 
@@ -90,50 +88,30 @@ export class EditProductComponent implements OnInit {
     });
   }
 
+  getAllAccessoryOfProject() {
+    this.accessoryService.getAllAccessoryOfProject().subscribe((data) => {
+      this.accessoryList = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.accessoryList.length; i++) {
+        this.accessoryList[i].checked = false;
+        if (this.accessoryList[i].id === this.accessoryId) {
+          this.accessoryList[i].checked = true;
+        }
+      }
+    });
+  }
 
   get username() {
     return this.authService.currentUserValue.username;
-  }
-
-  getOriginId($event) {
-    this.originId = $event.target.value;
-  }
-
-  getTypeId($event) {
-    this.typeId = $event.target.value;
   }
 
   getImage($event) {
     if ($event.target.files.length > 0) {
       this.imageFile = $event.target.files[0];
     }
-    const imageFile = this.getCurrentDateTime() + this.imageFile;
-    const fileRef = this.storage.ref(imageFile);
-    this.storage.upload(imageFile, this.imageFile).snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe((url) => {
-          this.imageLink = url;
-        });
-      })
-    ).subscribe();
   }
 
-  editProduct() {
-    const productForm = {
-      name: this.productForm.value.name,
-      price: this.productForm.value.price,
-      quantity: this.productForm.value.quantity,
-      image: this.imageLink,
-      originId: this.originId,
-      accessoryId: this.accessoryId,
-      typeId: this.typeId
-    };
-    this.productService.editProductOfProject(this.productId, productForm).subscribe((data) => {
-      alert('Sửa thông tin thành công!');
-    });
-  }
-
-  getCurrentDateTime(): string {
-    return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
+  getAccessoryId($event) {
+    this.accessoryId = $event.target.value;
   }
 }

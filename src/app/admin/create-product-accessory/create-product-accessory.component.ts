@@ -1,24 +1,24 @@
 import {Component, Inject, OnInit} from '@angular/core';
+import {Origin} from '../../model/origin';
+import {Accessory} from '../../model/accessory';
+import {Type} from '../../model/type';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../service/auth.service';
 import {OriginService} from '../../service/origin.service';
-import {Accessory} from '../../model/accessory';
 import {AccessoryService} from '../../service/accessory.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Origin} from '../../model/origin';
 import {ProductService} from '../../service/product.service';
-import {AngularFireStorage} from '@angular/fire/storage';
-import {formatDate} from '@angular/common';
-import {finalize} from 'rxjs/operators';
-import {Router} from '@angular/router';
 import {TypeService} from '../../service/type.service';
-import {Type} from '../../model/type';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {Router} from '@angular/router';
+import {finalize} from 'rxjs/operators';
+import {formatDate} from '@angular/common';
 
 @Component({
-  selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css']
+  selector: 'app-create-product-accessory',
+  templateUrl: './create-product-accessory.component.html',
+  styleUrls: ['./create-product-accessory.component.css']
 })
-export class CreateProductComponent implements OnInit {
+export class CreateProductAccessoryComponent implements OnInit {
 
   originList: Origin[] = [];
   accessoryList: Accessory[] = [];
@@ -77,12 +77,6 @@ export class CreateProductComponent implements OnInit {
   getAccessoryId($event) {
     this.accessoryId = $event.target.value;
   }
-  getTypeId($event) {
-    this.typeId = $event.target.value;
-  }
-  getOriginId($event) {
-    this.originId = $event.target.value;
-  }
 
   getImage(event) {
     if (event.target.files.length > 0) {
@@ -119,4 +113,5 @@ export class CreateProductComponent implements OnInit {
   getCurrentDateTime(): string {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
+
 }

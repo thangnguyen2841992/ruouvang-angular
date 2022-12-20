@@ -14,7 +14,7 @@ export class AccessoryService {
   constructor(private http: HttpClient) {
   }
 
-  getAllAccessoryOfCategory(): Observable<Accessory[]> {
+  getAllAccessoryOfProject(): Observable<Accessory[]> {
     return this.http.get<Accessory[]>(`${API_URL}`);
   }
 }
