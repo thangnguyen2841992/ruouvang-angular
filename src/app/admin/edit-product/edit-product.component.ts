@@ -29,6 +29,7 @@ export class EditProductComponent implements OnInit {
   typeList: Type[] = [];
   imageFile: any;
   accessoryId = 0;
+  accessoryList: Accessory[] = [];
 
   constructor(private productService: ProductService,
               private router: Router,
@@ -48,6 +49,7 @@ export class EditProductComponent implements OnInit {
     this.findProductByID();
     this.getAllOriginOfProject();
     this.getAllTypeOfProject();
+    this.getAllAccessory();
   }
 
   findProductByID() {
@@ -89,7 +91,11 @@ export class EditProductComponent implements OnInit {
       }
     });
   }
-
+  getAllAccessory() {
+    this.accessoryService.getAllAccessoryOfProject().subscribe((data) => {
+      this.accessoryList = data;
+    });
+  }
 
   get username() {
     return this.authService.currentUserValue.username;

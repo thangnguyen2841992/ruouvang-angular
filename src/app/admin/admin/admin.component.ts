@@ -7,6 +7,8 @@ import {AuthService} from '../../service/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../model/product';
 import {ProductService} from '../../service/product.service';
+import {Type} from '../../model/type';
+import {TypeService} from '../../service/type.service';
 
 @Component({
   selector: 'app-admin',
@@ -19,14 +21,42 @@ export class AdminComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({
     keyword: new FormControl('', [Validators.required])
   });
+  originList: Origin[] = [];
+  accessoryList: Accessory[] = [];
+  typeList: Type[] = [];
+  productId: number;
+  productname: string;
 
   constructor(private authService: AuthService,
-              private categoryService: OriginService,
+              private originService: OriginService,
+              private accessoryService: AccessoryService,
+              private typeService: TypeService,
               private productService: ProductService) {
   }
 
   ngOnInit() {
     this.getAllAlcohol();
+    this.getAllOrigin();
+    this.getAllAccessory();
+    this.getAllType();
+  }
+
+  getAllOrigin() {
+    this.originService.getAllOriginOfProject().subscribe((data) => {
+      this.originList = data;
+    });
+  }
+
+  getAllAccessory() {
+    this.accessoryService.getAllAccessoryOfProject().subscribe((data) => {
+      this.accessoryList = data;
+    });
+  }
+
+  getAllType() {
+    this.typeService.getAllTypeOfProject().subscribe((data) => {
+      this.typeList = data;
+    });
   }
 
   get username() {
@@ -38,5 +68,17 @@ export class AdminComponent implements OnInit {
     this.productService.getAllAlcoholOfProject(this.offset).subscribe((data) => {
       this.products = data;
     });
+  }
+
+  deleteProduct(productId: number) {
+    this.productService.deleteProductOfProject(productId).subscribe((data) => {
+      alert('Xoá thành công!');
+      this.getAllAlcohol();
+    });
+  }
+
+  getProductId(id: number, name: string) {
+    this.productId = id;
+    this.productname = name;
   }
 }

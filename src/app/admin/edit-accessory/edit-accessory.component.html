@@ -53,37 +53,74 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                THAO TÁC
-                <i class="fas fa-angle-left right"></i>
-                <!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+            <label for="show-action-tree" class="action">
+              <i style="font-size: 20px" class="fa-solid fa-user"></i>
+              THAO TÁC
+              <i style="margin-left: 80px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden type="checkbox" id="show-action-tree">
+            <ul id="action-tree" class="nav nav-treeview">
               <li class="nav-item">
-                <a class="nav-link">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm mới sản phẩm</p>
+                  <p>Thêm mới rượu vang</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/admin/accessory/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm mới phụ kiện</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item" *ngFor="let category of categoryList">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                {{category.name}}
-                <i class="fas fa-angle-left right"></i>
-                <!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item" *ngFor="let brand of category.brandList">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+          <br>
+          <li class="nav-item">
+            <label for="show-alcohol-tree-1" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              XUẤT XỨ
+              <i style="margin-left: 90px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-alcohol-tree-1">
+            <ul id="alcohol-tree-1" class="nav nav-treeview">
+              <li class="nav-item" *ngFor="let origin of originList">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{{brand.name}}</p>
+                  <p>{{origin.name}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <br>
+          <li class="nav-item">
+            <label for="show-alcohol-tree-2" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              LOẠI RƯỢU
+              <i style="margin-left: 73px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-alcohol-tree-2">
+            <ul id="alcohol-tree-2" class="nav nav-treeview">
+              <li class="nav-item" *ngFor="let type of typeList">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{type.name}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <br>
+          <li class="nav-item">
+            <label for="show-accessory-tree" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              PHỤ KIỆN
+              <i style="margin-left: 83px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-accessory-tree">
+            <ul id="accessory-tree" class="nav nav-treeview">
+              <li class="nav-item" *ngFor="let accessory of accessoryList">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{accessory.name}}</p>
                 </a>
               </li>
             </ul>
@@ -130,28 +167,31 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <!-- form start -->
-              <form [formGroup]="productForm">
+              <form [formGroup]="productForm" (ngSubmit)="editProduct()">
                 <div class="card-body">
                   <div class="form-group">
                     <label>Loại phụ kiện</label>
                     <div class="form-check" *ngFor="let accessory of accessoryList">
-                      <input [checked]="accessory.checked" (change)="getAccessoryId($event)"  class="form-check-input" type="radio" name="type" value="{{accessory.id}}">
+                      <input [checked]="accessory.checked" (change)="getAccessoryId($event)" class="form-check-input"
+                             type="radio" name="type" value="{{accessory.id}}">
                       <label class="form-check-label">
                         {{accessory.name}}
                       </label>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label  for="name">Tên sản phẩm</label>
+                    <label for="name">Tên sản phẩm</label>
                     <input formControlName="name" type="text" class="form-control" id="name" placeholder="Tên sản phẩm">
                   </div>
                   <div class="form-group">
                     <label for="price">Giá sản phẩm</label>
-                    <input formControlName="price" type="number" class="form-control" id="price" placeholder="Giá sản phẩm">
+                    <input formControlName="price" type="number" class="form-control" id="price"
+                           placeholder="Giá sản phẩm">
                   </div>
                   <div class="form-group">
                     <label for="quantity">Số lượng</label>
-                    <input formControlName="quantity" type="number" class="form-control" id="quantity" placeholder="Số lượng">
+                    <input formControlName="quantity" type="number" class="form-control" id="quantity"
+                           placeholder="Số lượng">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFile">Ảnh sản phẩm</label>
@@ -167,7 +207,8 @@
                   </div>
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Thêm mới</button>
+                  <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
+                  <a routerLink="/admin/accessory/list" style="margin-left: 20px" class="btn btn-default">Quay lại</a>
                 </div>
               </form>
             </div>

@@ -30,7 +30,12 @@ export class ProductService {
   createNewProductOfProject(product): Observable<Product> {
     return this.http.post<Product>(`${API_URL}`, product);
   }
+
   editProductOfProject(productId: number, product): Observable<Product> {
     return this.http.put(`${API_URL}/product/${productId}`, product);
   }
- }
+
+  deleteProductOfProject(productId: number): Observable<Product> {
+    return this.http.delete<Product>(`${API_URL}/delete/${productId}`);
+  }
+}

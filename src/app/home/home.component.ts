@@ -47,13 +47,13 @@ export class HomeComponent implements OnInit {
   }
 
   getAllProductCategory3() {
-    this.productService.getAllProductCategory3OfProject(this.offset3).subscribe((data) => {
+    this.productService.getAllAccessoryOfProject(this.offset3).subscribe((data) => {
       this.productList3 = data;
     });
   }
 
   showAllAccessory() {
-    this.accessoryService.getAllAccessoryOfCategory().subscribe((data) => {
+    this.accessoryService.getAllAccessoryOfProject().subscribe((data) => {
       this.accessoryList = data;
     });
   }
