@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Origin} from '../../model/origin';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Type} from '../../model/type';
@@ -9,6 +9,9 @@ import {AuthService} from '../../service/auth.service';
 import {TypeService} from '../../service/type.service';
 import {Accessory} from '../../model/accessory';
 import {AccessoryService} from '../../service/accessory.service';
+import {formatDate} from '@angular/common';
+import {finalize} from 'rxjs/operators';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-accessory',
@@ -34,7 +37,8 @@ export class EditAccessoryComponent implements OnInit {
               private originService: OriginService,
               private authService: AuthService,
               private typeService: TypeService,
-              private accessoryService: AccessoryService) {
+              private accessoryService: AccessoryService,
+              @Inject(AngularFireStorage) private storage: AngularFireStorage,) {
     this.activeRouted.paramMap.subscribe((paramMap: ParamMap) => {
       this.productId = +paramMap.get('id');
     });
@@ -109,9 +113,37 @@ export class EditAccessoryComponent implements OnInit {
     if ($event.target.files.length > 0) {
       this.imageFile = $event.target.files[0];
     }
+    const imageFile = this.getCurrentDateTime() + this.imageFile;
+    const fileRef = this.storage.ref(imageFile);
+    this.storage.upload(imageFile, this.imageFile).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.imageLink = url;
+        });
+      })
+    ).subscribe();
   }
 
   getAccessoryId($event) {
     this.accessoryId = $event.target.value;
+  }
+
+  editProduct() {
+    const productForm = {
+      name: this.productForm.value.name,
+      price: this.productForm.value.price,
+      quantity: this.productForm.value.quantity,
+      image: this.imageLink,
+      originId: this.originId,
+      accessoryId: this.accessoryId,
+      typeId: this.typeId
+    };
+    this.productService.editProductOfProject(this.productId, productForm).subscribe((data) => {
+      alert('Sửa thông tin thành công!');
+    });
+  }
+
+  getCurrentDateTime(): string {
+    return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
   }
 }

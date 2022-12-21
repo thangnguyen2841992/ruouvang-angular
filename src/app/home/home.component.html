@@ -110,7 +110,7 @@
       </h5>
       </a>
       </li>
-      <li *ngIf="username != null || username == null">
+      <li>
         <div class="dropdown">
           <h5 class="dropbtn">Rượu Vang Ngoại <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">
@@ -119,7 +119,9 @@
             </a>
           </div>
         </div>
-        <div class="dropdown">
+      </li>
+      <li>
+        <div  class="dropdown">
           <h5 class="dropbtn">Rượu Vang Ngon <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">
             <a *ngFor="let type of typeList">{{type.name}}
@@ -127,6 +129,9 @@
             </a>
           </div>
         </div>
+
+      </li>
+      <li>
         <div class="dropdown">
           <h5 class="dropbtn">Phụ Kiện Rượu Vang<i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">

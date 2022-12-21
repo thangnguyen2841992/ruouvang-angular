@@ -1,3 +1,22 @@
 .product-name:hover {
   text-decoration: underline;
 }
+.action {
+  color: white;
+  margin-left: 20px;
+}
+.action-tree {
+  display: none;
+}
+#show-action-tree:checked ~ #action-tree {
+  display: block;
+}
+#show-alcohol-tree-1:checked ~ #alcohol-tree-1 {
+  display: block;
+}
+#show-alcohol-tree-2:checked ~ #alcohol-tree-2 {
+  display: block;
+}
+#show-accessory-tree:checked ~ #accessory-tree {
+  display: block;
+}

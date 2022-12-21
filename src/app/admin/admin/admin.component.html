@@ -64,15 +64,13 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                THAO TÁC
-                <i class="fas fa-angle-left right"></i>
-<!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+            <label for="show-action-tree" class="action">
+              <i style="font-size: 20px" class="fa-solid fa-user"></i>
+              THAO TÁC
+              <i style="margin-left: 80px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden type="checkbox" id="show-action-tree">
+            <ul id="action-tree" class="nav nav-treeview">
               <li class="nav-item">
                 <a routerLink="/admin/alcohol/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -83,6 +81,57 @@
                 <a routerLink="/admin/accessory/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm mới phụ kiện</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <br>
+          <li class="nav-item">
+            <label for="show-alcohol-tree-1" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              XUẤT XỨ
+              <i style="margin-left: 90px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-alcohol-tree-1">
+            <ul id="alcohol-tree-1" class="nav nav-treeview">
+              <li class="nav-item" *ngFor="let origin of originList">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{origin.name}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <br>
+          <li class="nav-item">
+            <label for="show-alcohol-tree-2" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              LOẠI RƯỢU
+              <i style="margin-left: 73px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-alcohol-tree-2">
+            <ul id="alcohol-tree-2" class="nav nav-treeview">
+              <li class="nav-item" *ngFor="let type of typeList">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{type.name}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <br>
+          <li class="nav-item">
+            <label for="show-accessory-tree" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              PHỤ KIỆN
+              <i style="margin-left: 83px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-accessory-tree">
+            <ul id="accessory-tree" class="nav nav-treeview">
+              <li class="nav-item" *ngFor="let accessory of accessoryList">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{accessory.name}}</p>
                 </a>
               </li>
             </ul>
@@ -166,7 +215,7 @@
                 <td>
                   <a routerLink="/admin/alcohol/edit/{{product.id}}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
                 <td>
-                  <a class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a></td>
+                  <a (click)="getProductId(product.id, product.name)" class="btn btn-danger" data-toggle="modal" data-target="#delete-alcohol"><i class="fa-regular fa-trash-can"></i></a></td>
               </tr>
               </tbody>
             </table>
@@ -196,3 +245,18 @@
   </footer>
 </div>
 </body>
+<div class="modal fade" id="delete-alcohol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa sản phẩm "{{productname}}" chứ?</h5>
+        <span type="button" class="btn-close" data-dismiss="modal" aria-label="Close">X</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteProduct(productId)">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+
+    </div>
+  </div>
+</div>

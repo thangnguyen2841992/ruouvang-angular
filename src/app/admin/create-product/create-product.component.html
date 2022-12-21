@@ -53,77 +53,72 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                THAO TÁC
-                <i class="fas fa-angle-left right"></i>
-                <!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+            <label for="show-action-tree" class="action">
+              <i style="font-size: 20px" class="fa-solid fa-user"></i>
+              THAO TÁC
+              <i style="margin-left: 80px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden type="checkbox" id="show-action-tree">
+            <ul id="action-tree" class="nav nav-treeview">
               <li class="nav-item">
-                <a class="nav-link">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm mới rượu vang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link">
+                <a routerLink="/admin/accessory/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm mới phụ kiện rượu vang</p>
+                  <p>Thêm mới phụ kiện</p>
                 </a>
               </li>
             </ul>
           </li>
+          <br>
           <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Rượu Vang Ngoại
-                <i class="fas fa-angle-left right"></i>
-                <!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+            <label for="show-alcohol-tree-1" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              XUẤT XỨ
+              <i style="margin-left: 90px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-alcohol-tree-1">
+            <ul id="alcohol-tree-1" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let origin of originList">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{origin.name}}</p>
                 </a>
               </li>
             </ul>
           </li>
+          <br>
           <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Rượu Vang Ngon
-                <i class="fas fa-angle-left right"></i>
-                <!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+            <label for="show-alcohol-tree-2" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              LOẠI RƯỢU
+              <i style="margin-left: 73px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-alcohol-tree-2">
+            <ul id="alcohol-tree-2" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let type of typeList">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{type.name}}</p>
                 </a>
               </li>
             </ul>
           </li>
+          <br>
           <li class="nav-item">
-            <a class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Phụ Kiện Rượu Vang
-                <i class="fas fa-angle-left right"></i>
-                <!--                <span class="badge badge-info right">6</span>-->
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+            <label for="show-accessory-tree" class="action">
+              <i style="font-size: 20px" class="fa-brands fa-sourcetree"></i>
+              PHỤ KIỆN
+              <i style="margin-left: 83px" class="fa-solid fa-caret-left"></i>
+            </label>
+            <input hidden  type="checkbox" id="show-accessory-tree">
+            <ul id="accessory-tree" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let accessory of accessoryList">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a routerLink="/admin/alcohol/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{accessory.name}}</p>
                 </a>
@@ -220,6 +215,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Thêm mới</button>
+                  <a routerLink="/admin/all" class="btn btn-default" style="margin-left: 20px">Danh sách rượu vang</a>
                 </div>
               </form>
             </div>
