@@ -37,7 +37,8 @@ export class HomeComponent implements OnInit {
     this.getAllOrigin();
     this.showAllAccessory();
     this.showAllType();
-    this.getAllProductCategory3();
+    this.getAllAccessory();
+    this.getAllAlcohol();
   }
 
   getAllOrigin() {
@@ -47,9 +48,15 @@ export class HomeComponent implements OnInit {
   }
 
 
-  getAllProductCategory3() {
+  getAllAccessory() {
     this.productService.getAllAccessoryOfProject(this.offset3).subscribe((data) => {
       this.productList3 = data;
+    });
+  }
+
+  getAllAlcohol() {
+    this.productService.getAllAlcoholOfProject(this.offset1and2).subscribe((data) => {
+      this.productList4 = data;
     });
   }
 
