@@ -81,4 +81,18 @@ export class AdminComponent implements OnInit {
     this.productId = id;
     this.productname = name;
   }
+
+  getAllAcoholByOriginIdOfProject(originId: number) {
+    this.productService.getAllAcoholByOriginId(originId, this.offset).subscribe((data) => {
+      this.products = data;
+    });
+  }
+
+  getAllAcoholByTypeIdOfProject(typeId: number) {
+    this.productService.getAllAcoholByTypeId(typeId, this.offset).subscribe((data) => {
+      this.products = data;
+    });
+  }
+
+
 }

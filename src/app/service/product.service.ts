@@ -27,6 +27,14 @@ export class ProductService {
     return this.http.get<ProductEntity>(`${API_URL}/${productID}`);
   }
 
+  getAllAcoholByOriginId(originId: number, offset: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/origin/${originId}?offset=${offset}`);
+  }
+
+  getAllAcoholByTypeId(typeId: number, offset: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/type/${typeId}?offset=${offset}`);
+  }
+
   createNewProductOfProject(product): Observable<Product> {
     return this.http.post<Product>(`${API_URL}`, product);
   }

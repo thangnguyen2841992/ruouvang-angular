@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   productList4: Product[] = [];
   offset3 = 0;
   offset1and2 = 0;
+  isLogin: boolean;
 
   constructor(private originService: OriginService,
               private accessoryService: AccessoryService,
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
     this.showAllType();
     this.getAllAccessory();
     this.getAllAlcohol();
+    this.checkLogin();
   }
 
   getAllOrigin() {
@@ -79,6 +81,14 @@ export class HomeComponent implements OnInit {
   logout() {
     this.authService.logout();
     window.location.reload();
+  }
+
+  checkLogin() {
+    if (JSON.parse(sessionStorage.getItem('user')) != null) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
   }
 
   get username() {

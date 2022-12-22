@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../service/auth.service';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
   user: User = {};
-
   constructor(private authService: AuthService,
               private router: Router) {
     this.authService.currentUser.subscribe(value => this.user = value);
