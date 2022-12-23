@@ -35,6 +35,10 @@ export class ProductService {
     return this.http.get<Product[]>(`${API_URL}/type/${typeId}?offset=${offset}`);
   }
 
+  getAllAccessoryByAccessoryId(accessoryId: number, offset: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/accessory/${accessoryId}?offset=${offset}`);
+  }
+
   createNewProductOfProject(product): Observable<Product> {
     return this.http.post<Product>(`${API_URL}`, product);
   }

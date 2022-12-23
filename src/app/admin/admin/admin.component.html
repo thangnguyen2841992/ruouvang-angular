@@ -129,7 +129,7 @@
             <input hidden  type="checkbox" id="show-accessory-tree">
             <ul id="accessory-tree" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let accessory of accessoryList">
-                <a routerLink="/admin/alcohol/create" class="nav-link">
+                <a style="cursor: pointer" (click)="getAllAccessoryByAccessoryIdOfProject(accessory.id)" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{accessory.name}}</p>
                 </a>
@@ -170,7 +170,8 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Danh sách rượu vang | <a routerLink="/admin/accessory/list" style="color: deepskyblue; cursor: pointer">Danh sách phụ kiện</a></h1>
+            <h1 *ngIf="!isShowAccessory" class="m-0">Danh sách rượu vang | <a (click)="showListAccessory()" style="color: deepskyblue; cursor: pointer">Danh sách phụ kiện</a></h1>
+            <h1 *ngIf="isShowAccessory"  class="m-0">Danh sách phụ kiện | <a (click)="showListAccessory()" style="color: deepskyblue; cursor: pointer">Danh sách rượu vang</a></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -189,7 +190,7 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-            <table class="table">
+            <table *ngIf="!isShowAccessory" class="table">
               <thead>
               <tr>
                 <th scope="col">#</th>
@@ -219,6 +220,35 @@
               </tr>
               </tbody>
             </table>
+            <table *ngIf="isShowAccessory" class="table">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ảnh sản phẩm</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Loại phụ kiện</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Sửa</th>
+                <th scope="col">Xóa</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let product of productsAccessory index as i">
+                <th scope="row">{{i + 1}}</th>
+                <td><a style="cursor: pointer"><img width="150" height="150" src="{{product.image}}"></a></td>
+                <td><a class="product-name" style="cursor: pointer; color: blue">{{product.name}}</a></td>
+                <td>{{product.accessory}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.quantity}}</td>
+                <td>
+                  <a routerLink="/admin/accessory/edit/{{product.id}}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td>
+                  <a (click)="getProductId(product.id, product.name)" class="btn btn-danger" data-toggle="modal" data-target="#delete-alcohol"><i class="fa-regular fa-trash-can"></i></a></td>
+              </tr>
+              </tbody>
+            </table>
+
           </div>
         </div>
         <!-- /.row -->

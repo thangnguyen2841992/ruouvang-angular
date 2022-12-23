@@ -17,6 +17,7 @@ import {TypeService} from '../../service/type.service';
 })
 export class AdminComponent implements OnInit {
   products: Product[] = [];
+  productsAccessory: Product[] = [];
   offset = 0;
   searchForm: FormGroup = new FormGroup({
     keyword: new FormControl('', [Validators.required])
@@ -26,6 +27,7 @@ export class AdminComponent implements OnInit {
   typeList: Type[] = [];
   productId: number;
   productname: string;
+  isShowAccessory = false;
 
   constructor(private authService: AuthService,
               private originService: OriginService,
@@ -39,6 +41,7 @@ export class AdminComponent implements OnInit {
     this.getAllOrigin();
     this.getAllAccessory();
     this.getAllType();
+    this.getAllAccessoryOfProject();
   }
 
   getAllOrigin() {
@@ -84,15 +87,30 @@ export class AdminComponent implements OnInit {
 
   getAllAcoholByOriginIdOfProject(originId: number) {
     this.productService.getAllAcoholByOriginId(originId, this.offset).subscribe((data) => {
+      this.isShowAccessory = false;
       this.products = data;
     });
   }
 
   getAllAcoholByTypeIdOfProject(typeId: number) {
     this.productService.getAllAcoholByTypeId(typeId, this.offset).subscribe((data) => {
+      this.isShowAccessory = false;
       this.products = data;
     });
   }
+  getAllAccessoryByAccessoryIdOfProject(accessoryId: number) {
+    this.productService.getAllAccessoryByAccessoryId(accessoryId, this.offset).subscribe((data) => {
+      this.isShowAccessory = true;
+      this.productsAccessory = data;
+    });
+  }
+  getAllAccessoryOfProject() {
+    this.productService.getAllAccessoryOfProject(this.offset).subscribe((data) => {
+      this.productsAccessory = data;
+    });
+  }
 
-
+  showListAccessory() {
+    this.isShowAccessory = !this.isShowAccessory;
+  }
 }
