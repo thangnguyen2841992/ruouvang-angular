@@ -13,10 +13,11 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { CreateProductAccessoryComponent } from './create-product-accessory/create-product-accessory.component';
 import { ListAccessoryComponent } from './list-accessory/list-accessory.component';
 import { EditAccessoryComponent } from './edit-accessory/edit-accessory.component';
+import { ListAlcoholByOriginComponent } from './list-alcohol-by-origin/list-alcohol-by-origin.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, CreateProductComponent, EditProductComponent, CreateProductAccessoryComponent, ListAccessoryComponent, EditAccessoryComponent],
+  declarations: [AdminComponent, CreateProductComponent, EditProductComponent, CreateProductAccessoryComponent, ListAccessoryComponent, EditAccessoryComponent, ListAlcoholByOriginComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

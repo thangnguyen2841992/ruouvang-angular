@@ -6,6 +6,7 @@ import {EditProductComponent} from './edit-product/edit-product.component';
 import {CreateProductAccessoryComponent} from './create-product-accessory/create-product-accessory.component';
 import {ListAccessoryComponent} from './list-accessory/list-accessory.component';
 import {EditAccessoryComponent} from './edit-accessory/edit-accessory.component';
+import {ListAlcoholByOriginComponent} from './list-alcohol-by-origin/list-alcohol-by-origin.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'accessory/list',
     component: ListAccessoryComponent
+  },
+  {
+    path: 'alcohol/origin/:originId',
+    component: ListAlcoholByOriginComponent
   },
   {
     path: 'alcohol/create',

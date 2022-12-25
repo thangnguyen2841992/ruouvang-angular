@@ -95,7 +95,7 @@
             <input hidden  type="checkbox" id="show-alcohol-tree-1">
             <ul id="alcohol-tree-1" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let origin of originList">
-                <a style="cursor: pointer" routerLink="/admin/alcohol/origin/{{origin.id}}" class="nav-link">
+                <a style="cursor: pointer" (click)="getAllAcoholByOriginIdOfProject(origin.id)" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{origin.name}}</p>
                 </a>
@@ -129,7 +129,7 @@
             <input hidden  type="checkbox" id="show-accessory-tree">
             <ul id="accessory-tree" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let accessory of accessoryList">
-                <a style="cursor: pointer" (click)="getAllAccessoryByAccessoryIdOfProject(accessory.id)" class="nav-link">
+                <a style="cursor: pointer" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{accessory.name}}</p>
                 </a>
@@ -190,7 +190,7 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-            <table *ngIf="!isShowAccessory" class="table">
+            <table class="table">
               <thead>
               <tr>
                 <th scope="col">#</th>
@@ -220,46 +220,18 @@
               </tr>
               </tbody>
             </table>
-            <table *ngIf="isShowAccessory" class="table">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Ảnh sản phẩm</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Loại phụ kiện</th>
-                <th scope="col">Giá</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Sửa</th>
-                <th scope="col">Xóa</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let product of productsAccessory index as i">
-                <th scope="row">{{i + 1}}</th>
-                <td><a style="cursor: pointer"><img width="150" height="150" src="{{product.image}}"></a></td>
-                <td><a class="product-name" style="cursor: pointer; color: blue">{{product.name}}</a></td>
-                <td>{{product.accessory}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.quantity}}</td>
-                <td>
-                  <a routerLink="/admin/accessory/edit/{{product.id}}" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
-                <td>
-                  <a (click)="getProductId(product.id, product.name)" class="btn btn-danger" data-toggle="modal" data-target="#delete-alcohol"><i class="fa-regular fa-trash-can"></i></a></td>
-              </tr>
-              </tbody>
-            </table>
             <div class="row justify-content-md-center">
-            <div class="col-md-auto">
-              <div class="pagination">
-                <a *ngIf="currentPage > 1"  (click)="previous()">&laquo;</a>
-                <a>Trang</a>
-                <a  class="active">{{currentPage}}</a>
-                <a>/</a>
-                <a>{{totalPage}}</a>
-                <a *ngIf="currentPage < totalPage" (click)="next()">&raquo;</a>
-              </div>
+              <div class="col-md-auto">
+                <div class="pagination">
+                  <a *ngIf="currentPage > 1"  (click)="previous()">&laquo;</a>
+                  <a>Trang</a>
+                  <a  class="active">{{currentPage}}</a>
+                  <a>/</a>
+                  <a>{{totalPage}}</a>
+                  <a *ngIf="currentPage < totalPage" (click)="next()">&raquo;</a>
+                </div>
 
-            </div>
+              </div>
             </div>
           </div>
         </div>
