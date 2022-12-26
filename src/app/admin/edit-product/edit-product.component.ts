@@ -13,6 +13,7 @@ import {TypeService} from '../../service/type.service';
 import {finalize} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {ProgressSpinnerMode, ThemePalette} from '@angular/material';
 
 @Component({
   selector: 'app-edit-product',
@@ -31,6 +32,9 @@ export class EditProductComponent implements OnInit {
   accessoryId = 0;
   accessoryList: Accessory[] = [];
 
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'determinate';
+  value = 50;
   constructor(private productService: ProductService,
               private router: Router,
               private activeRouted: ActivatedRoute,

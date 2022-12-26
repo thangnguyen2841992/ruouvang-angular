@@ -28,7 +28,6 @@ export class AdminComponent implements OnInit {
   typeList: Type[] = [];
   productId: number;
   productname: string;
-  isShowAccessory = false;
   totalPage = 0;
   currentPage = 1;
 

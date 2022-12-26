@@ -14,17 +14,21 @@ import { CreateProductAccessoryComponent } from './create-product-accessory/crea
 import { ListAccessoryComponent } from './list-accessory/list-accessory.component';
 import { EditAccessoryComponent } from './edit-accessory/edit-accessory.component';
 import { ListAlcoholByOriginComponent } from './list-alcohol-by-origin/list-alcohol-by-origin.component';
+import { ListAcoholByTypeComponent } from './list-acohol-by-type/list-acohol-by-type.component';
+import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
 
 
 @NgModule({
-  declarations: [AdminComponent, CreateProductComponent, EditProductComponent, CreateProductAccessoryComponent, ListAccessoryComponent, EditAccessoryComponent, ListAlcoholByOriginComponent],
+  declarations: [AdminComponent, CreateProductComponent, EditProductComponent, CreateProductAccessoryComponent, ListAccessoryComponent, EditAccessoryComponent, ListAlcoholByOriginComponent, ListAcoholByTypeComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
     FormsModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   providers: [
     AngularFireStorage

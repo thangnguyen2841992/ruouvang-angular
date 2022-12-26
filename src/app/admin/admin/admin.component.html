@@ -112,7 +112,7 @@
             <input hidden  type="checkbox" id="show-alcohol-tree-2">
             <ul id="alcohol-tree-2" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let type of typeList">
-                <a (click)="getAllAcoholByTypeIdOfProject(type.id)" class="nav-link">
+                <a routerLink="/admin/alcohol/type/{{type.id}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{type.name}}</p>
                 </a>
@@ -170,8 +170,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 *ngIf="!isShowAccessory" class="m-0">Danh sách rượu vang | <a (click)="showListAccessory()" style="color: deepskyblue; cursor: pointer">Danh sách phụ kiện</a></h1>
-            <h1 *ngIf="isShowAccessory"  class="m-0">Danh sách phụ kiện | <a (click)="showListAccessory()" style="color: deepskyblue; cursor: pointer">Danh sách rượu vang</a></h1>
+            <h1  class="m-0">Danh sách rượu vang | <a routerLink="/admin/accessory/list" style="color: deepskyblue; cursor: pointer">Danh sách phụ kiện</a></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

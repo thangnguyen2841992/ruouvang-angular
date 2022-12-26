@@ -83,6 +83,7 @@ export class ListAlcoholByOriginComponent implements OnInit {
   }
 
   getAllAcoholByOriginIdOfProject(originId: number) {
+    this.originId = originId;
     this.productService.getAllAcoholByOriginId(originId, this.offset).subscribe((data) => {
       this.products = data;
     });

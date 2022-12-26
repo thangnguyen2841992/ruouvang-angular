@@ -1,23 +1,25 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Product} from '../../model/product';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../service/auth.service';
-import {OriginService} from '../../service/origin.service';
-import {ProductService} from '../../service/product.service';
-import {AccessoryService} from '../../service/accessory.service';
-import {TypeService} from '../../service/type.service';
 import {Origin} from '../../model/origin';
 import {Accessory} from '../../model/accessory';
 import {Type} from '../../model/type';
+import {AuthService} from '../../service/auth.service';
+import {OriginService} from '../../service/origin.service';
+import {AccessoryService} from '../../service/accessory.service';
+import {TypeService} from '../../service/type.service';
+import {ProductService} from '../../service/product.service';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-list-accessory',
-  templateUrl: './list-accessory.component.html',
-  styleUrls: ['./list-accessory.component.css']
+  selector: 'app-list-acohol-by-type',
+  templateUrl: './list-acohol-by-type.component.html',
+  styleUrls: ['./list-acohol-by-type.component.css']
 })
-export class ListAccessoryComponent implements OnInit {
+export class ListAcoholByTypeComponent implements OnInit {
 
   products: Product[] = [];
+  productsAccessory: Product[] = [];
   offset = 0;
   searchForm: FormGroup = new FormGroup({
     keyword: new FormControl('', [Validators.required])
@@ -26,7 +28,8 @@ export class ListAccessoryComponent implements OnInit {
   accessoryList: Accessory[] = [];
   typeList: Type[] = [];
   productId: number;
-  productName: string;
+  typeId: number;
+  productname: string;
   totalPage = 0;
   currentPage = 1;
 
@@ -34,15 +37,20 @@ export class ListAccessoryComponent implements OnInit {
               private originService: OriginService,
               private accessoryService: AccessoryService,
               private typeService: TypeService,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.typeId = +paramMap.get('typeId');
+    });
   }
 
   ngOnInit() {
-    this.getAllAccessoryOfProject();
     this.getAllOrigin();
     this.getAllAccessory();
     this.getAllType();
-    this.getAllAccessoryNoPaginationOfProject();
+    this.getAllAcoholByTypeIdOfProject(this.typeId);
+    this.getAllAcoholByTypeIdOfProjectNoPagination(this.typeId);
   }
 
   getAllOrigin() {
@@ -67,38 +75,39 @@ export class ListAccessoryComponent implements OnInit {
     return this.authService.currentUserValue.username;
   }
 
-
-  getAllAccessoryOfProject() {
-    this.productService.getAllAccessoryOfProject(this.offset).subscribe((data) => {
-      this.products = data;
-    });
-  }
-  getAllAccessoryNoPaginationOfProject() {
-    this.productService.getAllAccessoryNoPaginationOfProject().subscribe((data) => {
-      this.totalPage = Math.ceil(data.length / 10);
-    });
-  }
-
   deleteProduct(productId: number) {
     this.productService.deleteProductOfProject(productId).subscribe((data) => {
       alert('Xoá thành công!');
-      this.getAllAccessoryOfProject();
+      this.getAllAcoholByTypeIdOfProject(this.typeId);
+    });
+  }
+
+  getAllAcoholByTypeIdOfProject(typeId: number) {
+    this.currentPage =  1;
+    this.productService.getAllAcoholByTypeId(typeId, this.offset).subscribe((data) => {
+      this.products = data;
+    });
+  }
+
+  getAllAcoholByTypeIdOfProjectNoPagination(typeId: number) {
+    this.productService.getAllAlcoholByTypeIdNoPaginationOfProject(typeId).subscribe((data) => {
+      this.totalPage = Math.ceil(data.length / 10);
     });
   }
 
   getProductId(id: number, name: string) {
     this.productId = id;
-    this.productName = name;
+    this.productname = name;
   }
   next() {
     this.currentPage = this.currentPage + 1;
     this.offset = this.offset + 10;
-    this.getAllAccessoryOfProject();
+    this.getAllAcoholByTypeIdOfProject(this.typeId);
   }
 
   previous() {
     this.currentPage = this.currentPage - 1;
     this.offset = this.offset - 10;
-    this.getAllAccessoryOfProject();
+    this.getAllAcoholByTypeIdOfProject(this.typeId);
   }
 }

@@ -19,6 +19,10 @@ export class ProductService {
     return this.http.get<Product[]>(`${API_URL}/accessory?offset=${offset}`);
   }
 
+  getAllAccessoryNoPaginationOfProject(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/all/accessory`);
+  }
+
   getAllAlcoholOfProject(offset: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/alcohol?offset=${offset}`);
   }
@@ -35,6 +39,9 @@ export class ProductService {
   }
   getAllAlcoholByOriginIdNoPaginationOfProject(originId: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/all/origin/${originId}`);
+  }
+  getAllAlcoholByTypeIdNoPaginationOfProject(typeId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/all/type/${typeId}`);
   }
   getAllAcoholByTypeId(typeId: number, offset: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/type/${typeId}?offset=${offset}`);
