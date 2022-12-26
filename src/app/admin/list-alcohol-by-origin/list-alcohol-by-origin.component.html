@@ -95,7 +95,7 @@
             <input hidden  type="checkbox" id="show-alcohol-tree-1">
             <ul id="alcohol-tree-1" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let origin of originList">
-                <a style="cursor: pointer" (click)="getAllAcoholByOriginIdOfProject(origin.id)" class="nav-link">
+                <a style="cursor: pointer" (click)="getOriginId(origin.id, origin.name)" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{origin.name}}</p>
                 </a>
@@ -112,7 +112,7 @@
             <input hidden  type="checkbox" id="show-alcohol-tree-2">
             <ul id="alcohol-tree-2" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let type of typeList">
-                <a routerLink="/admin/alcohol/type/{{type.id}}" class="nav-link">
+                <a routerLink="/admin/alcohol/type/{{type.id}}/{{type.name}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{type.name}}</p>
                 </a>
@@ -170,12 +170,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Danh sách rượu vang | <a routerLink="/admin/accessory/list" style="color: deepskyblue; cursor: pointer">Danh sách phụ kiện</a></h1>
+            <h1 class="m-0">{{originName}}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Danh sách rượu vang</li>
+              <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+              <li class="breadcrumb-item active">{{originName}}</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -189,7 +189,12 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-12">
-            <table class="table">
+            <div *ngIf="products.length == 0" class="row justify-content-md-center">
+              <div class="col-md-auto">
+                <h1>Hiện chưa có sản phẩm nào</h1>
+              </div>
+            </div>
+            <table class="table" *ngIf="products.length > 0">
               <thead>
               <tr>
                 <th scope="col">#</th>
@@ -219,7 +224,7 @@
               </tr>
               </tbody>
             </table>
-            <div class="row justify-content-md-center">
+            <div  *ngIf="products.length > 0" class="row justify-content-md-center">
               <div class="col-md-auto">
                 <div class="pagination">
                   <a *ngIf="currentPage > 1"  (click)="previous()">&laquo;</a>

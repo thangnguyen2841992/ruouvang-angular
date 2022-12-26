@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Origin} from '../../model/origin';
@@ -32,6 +32,7 @@ export class ListAcoholByTypeComponent implements OnInit {
   productname: string;
   totalPage = 0;
   currentPage = 1;
+  typeName = '';
 
   constructor(private authService: AuthService,
               private originService: OriginService,
@@ -42,6 +43,7 @@ export class ListAcoholByTypeComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.typeId = +paramMap.get('typeId');
+      this.typeName = paramMap.get('typeName');
     });
   }
 
@@ -83,7 +85,6 @@ export class ListAcoholByTypeComponent implements OnInit {
   }
 
   getAllAcoholByTypeIdOfProject(typeId: number) {
-    this.currentPage =  1;
     this.productService.getAllAcoholByTypeId(typeId, this.offset).subscribe((data) => {
       this.products = data;
     });
@@ -92,13 +93,20 @@ export class ListAcoholByTypeComponent implements OnInit {
   getAllAcoholByTypeIdOfProjectNoPagination(typeId: number) {
     this.productService.getAllAlcoholByTypeIdNoPaginationOfProject(typeId).subscribe((data) => {
       this.totalPage = Math.ceil(data.length / 10);
+      if (this.totalPage === 0) {
+        this.currentPage = 0;
+      } else {
+        this.currentPage = 1;
+      }
     });
+
   }
 
   getProductId(id: number, name: string) {
     this.productId = id;
     this.productname = name;
   }
+
   next() {
     this.currentPage = this.currentPage + 1;
     this.offset = this.offset + 10;
@@ -108,6 +116,13 @@ export class ListAcoholByTypeComponent implements OnInit {
   previous() {
     this.currentPage = this.currentPage - 1;
     this.offset = this.offset - 10;
+    this.getAllAcoholByTypeIdOfProject(this.typeId);
+  }
+
+  getTypeId(id: number, name: string) {
+    this.typeId = id;
+    this.typeName = name;
+    this.getAllAcoholByTypeIdOfProjectNoPagination(this.typeId);
     this.getAllAcoholByTypeIdOfProject(this.typeId);
   }
 }

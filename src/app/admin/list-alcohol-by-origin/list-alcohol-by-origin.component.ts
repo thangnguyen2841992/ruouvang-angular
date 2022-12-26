@@ -19,7 +19,6 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 export class ListAlcoholByOriginComponent implements OnInit {
 
   products: Product[] = [];
-  productsAccessory: Product[] = [];
   offset = 0;
   searchForm: FormGroup = new FormGroup({
     keyword: new FormControl('', [Validators.required])
@@ -32,6 +31,7 @@ export class ListAlcoholByOriginComponent implements OnInit {
   productname: string;
   totalPage = 0;
   currentPage = 1;
+  originName = '';
 
   constructor(private authService: AuthService,
               private originService: OriginService,
@@ -42,6 +42,7 @@ export class ListAlcoholByOriginComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.originId = +paramMap.get('originId');
+      this.originName = paramMap.get('originName');
     });
   }
 
@@ -83,7 +84,6 @@ export class ListAlcoholByOriginComponent implements OnInit {
   }
 
   getAllAcoholByOriginIdOfProject(originId: number) {
-    this.originId = originId;
     this.productService.getAllAcoholByOriginId(originId, this.offset).subscribe((data) => {
       this.products = data;
     });
@@ -92,6 +92,11 @@ export class ListAlcoholByOriginComponent implements OnInit {
   getAllAcoholByOriginIdOfProjectNoPagination(originId: number) {
     this.productService.getAllAlcoholByOriginIdNoPaginationOfProject(originId).subscribe((data) => {
       this.totalPage = Math.ceil(data.length / 10);
+      if (this.totalPage === 0) {
+        this.currentPage = 0;
+      } else {
+        this.currentPage = 1;
+      }
     });
   }
 
@@ -99,6 +104,7 @@ export class ListAlcoholByOriginComponent implements OnInit {
     this.productId = id;
     this.productname = name;
   }
+
   next() {
     this.currentPage = this.currentPage + 1;
     this.offset = this.offset + 10;
@@ -111,4 +117,10 @@ export class ListAlcoholByOriginComponent implements OnInit {
     this.getAllAcoholByOriginIdOfProject(this.originId);
   }
 
+  getOriginId(id: number, name: string) {
+    this.originId = id;
+    this.originName = name;
+    this.getAllAcoholByOriginIdOfProjectNoPagination(this.originId);
+    this.getAllAcoholByOriginIdOfProject(this.originId);
+  }
 }

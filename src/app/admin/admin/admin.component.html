@@ -95,7 +95,7 @@
             <input hidden  type="checkbox" id="show-alcohol-tree-1">
             <ul id="alcohol-tree-1" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let origin of originList">
-                <a style="cursor: pointer" routerLink="/admin/alcohol/origin/{{origin.id}}" class="nav-link">
+                <a style="cursor: pointer" routerLink="/admin/alcohol/origin/{{origin.id}}/{{origin.name}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{origin.name}}</p>
                 </a>
@@ -112,7 +112,7 @@
             <input hidden  type="checkbox" id="show-alcohol-tree-2">
             <ul id="alcohol-tree-2" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let type of typeList">
-                <a routerLink="/admin/alcohol/type/{{type.id}}" class="nav-link">
+                <a routerLink="/admin/alcohol/type/{{type.id}}/{{type.name}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{type.name}}</p>
                 </a>

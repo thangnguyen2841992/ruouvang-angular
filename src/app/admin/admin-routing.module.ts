@@ -20,11 +20,11 @@ const routes: Routes = [
     component: ListAccessoryComponent
   },
   {
-    path: 'alcohol/origin/:originId',
+    path: 'alcohol/origin/:originId/:originName',
     component: ListAlcoholByOriginComponent
   },
   {
-    path: 'alcohol/type/:typeId',
+    path: 'alcohol/type/:typeId/:typeName',
     component: ListAcoholByTypeComponent
   },
   {
