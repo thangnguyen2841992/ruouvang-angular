@@ -120,6 +120,7 @@ export class ListAlcoholByOriginComponent implements OnInit {
   getOriginId(id: number, name: string) {
     this.originId = id;
     this.originName = name;
+    this.offset = 0;
     this.getAllAcoholByOriginIdOfProjectNoPagination(this.originId);
     this.getAllAcoholByOriginIdOfProject(this.originId);
   }

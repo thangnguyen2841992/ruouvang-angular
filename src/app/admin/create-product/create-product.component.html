@@ -84,7 +84,7 @@
             <input hidden  type="checkbox" id="show-alcohol-tree-1">
             <ul id="alcohol-tree-1" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let origin of originList">
-                <a routerLink="/admin/alcohol/create" class="nav-link">
+                <a routerLink="/admin/alcohol/origin/{{origin.id}}/{{origin.name}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{origin.name}}</p>
                 </a>
@@ -101,7 +101,7 @@
             <input hidden  type="checkbox" id="show-alcohol-tree-2">
             <ul id="alcohol-tree-2" class="nav nav-treeview">
               <li class="nav-item" *ngFor="let type of typeList">
-                <a routerLink="/admin/alcohol/create" class="nav-link">
+                <a routerLink="/admin/alcohol/type/{{type.id}}/{{type.name}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{type.name}}</p>
                 </a>
@@ -172,7 +172,7 @@
                   <div class="form-group">
                     <label>Xuất xứ</label>
                     <div class="form-check" *ngFor="let origin of originList">
-                      <input (change)="getOriginId($event)"  class="form-check-input" type="radio" name="origin" value="{{origin.id}}">
+                      <input [checked]="origin.checked" (change)="getOriginId($event)"  class="form-check-input" type="radio" name="origin" value="{{origin.id}}">
                       <label class="form-check-label">
                         {{origin.name}}
                       </label>
@@ -181,7 +181,7 @@
                   <div class="form-group">
                   <label>Loại rượu vang</label>
                   <div class="form-check" *ngFor="let type of typeList">
-                    <input (change)="getTypeId($event)"  class="form-check-input" type="radio" name="type" value="{{type.id}}">
+                    <input [checked]="type.checked" (change)="getTypeId($event)"  class="form-check-input" type="radio" name="type" value="{{type.id}}">
                     <label class="form-check-label">
                       {{type.name}}
                     </label>

@@ -23,11 +23,12 @@ export class CreateProductComponent implements OnInit {
   originList: Origin[] = [];
   accessoryList: Accessory[] = [];
   typeList: Type[] = [];
-  originId = 0;
+  originId = 1;
   accessoryId = 0;
-  typeId = 0;
+  typeId = 1;
   imageFile: any;
   imageLink = '';
+
   productForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
@@ -40,9 +41,7 @@ export class CreateProductComponent implements OnInit {
               private brandService: AccessoryService,
               private productService: ProductService,
               private typeService: TypeService,
-              @Inject(AngularFireStorage) private storage: AngularFireStorage,
-              private router: Router
-  ) {
+              @Inject(AngularFireStorage) private storage: AngularFireStorage) {
   }
 
   ngOnInit() {
@@ -58,6 +57,12 @@ export class CreateProductComponent implements OnInit {
   getAllOriginOfProject() {
     this.categoryService.getAllOriginOfProject().subscribe((data) => {
       this.originList = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.originList.length; i++) {
+        if (this.originList[i].id === this.originId) {
+          this.originList[i].checked = true;
+        }
+      }
     });
   }
 
@@ -67,19 +72,23 @@ export class CreateProductComponent implements OnInit {
       this.accessoryList = data;
     });
   }
+
   getAllTypeOfProject() {
     this.typeService.getAllTypeOfProject().subscribe((data) => {
       this.typeList = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.typeList.length; i++) {
+        if (this.typeList[i].id === this.typeId) {
+          this.typeList[i].checked = true;
+        }
+      }
     });
   }
 
-
-  getAccessoryId($event) {
-    this.accessoryId = $event.target.value;
-  }
   getTypeId($event) {
     this.typeId = $event.target.value;
   }
+
   getOriginId($event) {
     this.originId = $event.target.value;
   }

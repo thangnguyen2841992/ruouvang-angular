@@ -122,6 +122,7 @@ export class ListAcoholByTypeComponent implements OnInit {
   getTypeId(id: number, name: string) {
     this.typeId = id;
     this.typeName = name;
+    this.offset = 0;
     this.getAllAcoholByTypeIdOfProjectNoPagination(this.typeId);
     this.getAllAcoholByTypeIdOfProject(this.typeId);
   }

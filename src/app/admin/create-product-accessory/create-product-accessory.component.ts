@@ -24,7 +24,7 @@ export class CreateProductAccessoryComponent implements OnInit {
   accessoryList: Accessory[] = [];
   typeList: Type[] = [];
   originId = 0;
-  accessoryId = 0;
+  accessoryId = 1;
   typeId = 0;
   imageFile: any;
   imageLink = '';
@@ -65,8 +65,15 @@ export class CreateProductAccessoryComponent implements OnInit {
   getAllAccessoryOfProject() {
     this.brandService.getAllAccessoryOfProject().subscribe((data) => {
       this.accessoryList = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.accessoryList.length; i++) {
+        if (this.accessoryList[i].id === this.accessoryId) {
+          this.accessoryList[i].checked = true;
+        }
+      }
     });
   }
+
   getAllTypeOfProject() {
     this.typeService.getAllTypeOfProject().subscribe((data) => {
       this.typeList = data;
