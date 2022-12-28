@@ -161,97 +161,58 @@
   <input type="text" id="search-form-2" placeholder="Tìm kiếm sản phẩm" size="120">
   <button id="btn-search-2"><i class="fa-solid fa-magnifying-glass"></i></button>
 </div>
-<!--star-carousel-->
-<div class="carousel">
-  <div class="left-carousel">
-    <img id="img-1" src="https://ruouvang68.com/wp-content/uploads/2021/10/banner1.jpg">
-  </div>
-  <div class="right-carousel">
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="card" style="width: 18rem;">
-            <img src="https://ruouvang68.com/wp-content/uploads/2022/11/qua-tet-vp-01-300x300.jpg" class="card-img-top">
-            <div class="card-body">
-              <p class="card-text">Hộp quà tết đẹp giá rẻ VP01</p>
-              <h5 class="card-title">800.000</h5>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="card" style="width: 18rem;">
-            <img
-              src="https://ruouvang68.com/wp-content/uploads/2022/11/qua-tet-tang-doi-tac-kem-ruou-vang-sang-trong-1-300x300.jpg"
-              class="card-img-top">
-            <div class="card-body">
-              <p class="card-text">Quà tết tặng đối tác kèm rượu vang sang trọng</p>
-              <h5 class="card-title">800.000</h5>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="card" style="width: 18rem;">
-            <img src="https://ruouvang68.com/wp-content/uploads/2022/11/qua-tet-vip-cao-cap-V002-300x300.jpg"
-                 class="card-img-top">
-            <div class="card-body">
-              <p class="card-text">Hộp quà tết cao cấp-Biếu tặng khách hàng VIP-V002</p>
-              <h5 class="card-title">1.250.000</h5>
-            </div>
-          </div>
-        </div>
+<div style="margin-top: 20px" class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-1">
+
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-              data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-              data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <div class="col-lg-2">
+        <img src="{{product.image}}" alt="ảnh sản phẩm" width="400" height="400px">
+      </div>
+      <!-- /.col-md-6 -->
+      <div class="col-lg-5">
+
+        <!-- general form elements -->
+        <div class="card card-primary">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item active">{{product.origin}}</li>
+          </ol>
+          <!-- form start -->
+            <div class="card-body">
+              <div class="form-group">
+                <h4 style="font-weight: bolder">{{product.name}}</h4>
+              </div>
+              <div class="form-group">
+                <h5 style="color: red; font-weight: bolder">{{product.price}}</h5>
+              </div>
+              <div class="form-group">
+               <p>{{product.description}}</p>
+              </div>
+              <div class="form-group">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item"><p (click)="subQuantity()" style="cursor: pointer" class="page-link">-</p></li>
+                    <li class="page-item"><p class="page-link">{{quantity}}</p></li>
+                    <li class="page-item"><p (click)="addQuantity()" style="cursor: pointer" class="page-link">+</p></li>
+                    <li style="margin-left: 20px">
+                      <a (click)="createNewCart()" style="background-color: black; color: white; font-weight: bolder" class="page-link">
+                         Thêm vào giỏ hàng</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+        </div>
+
+      </div>
+
+
+      <!-- /.col-md-6 -->
     </div>
   </div>
 </div>
-<!--end-carousel-->
-<!--Header-->
-<div class="header">
-  <h1>Rượu vang 68 – rượu vang nhập khẩu chính hãng</h1>
-  <p id="description">Shop rượu vang 68 (ruouvang68.com) là đơn vị nhập khẩu và phân phối rượu vang ngoại chính hãng
-    hàng đầu Việt Nam. Với kinh nghiệm nhiều năm trong lĩnh vực đồ uống nhập khẩu, chúng tôi có những sản phẩm rượu vang
-    ngon nhất, đảm bảo chính hãng 100% với chi phí hợp lý hơn với các khách hàng. Chúng tôi luôn có những sản phẩm đặc
-    biệt, phù hợp với yêu cầu đa dạng của người tiêu dùng từ “newbie” đến sành rượu.</p>
-</div>
-<!--end-header-->
-<!--product-->
-<div class="separator"><h2>SẢN PHẨM BÁN CHẠY</h2></div>
-<!--list-product - 1-->
-<div class="list-product-1">
-  <div *ngFor="let product of productList4">
-    <div class="card" style="width: 20rem;">
-      <a routerLink="/product/{{product.id}}"><img src="{{product.image}}" class="card-img-top"></a>
-      <div class="card-body">
-        <a style="color: black" routerLink="/product/{{product.id}}"><p style="font-size: 15px" class="card-text">{{product.name}}</p></a>
-        <h5 style="font-weight: bolder" class="card-title">{{product.price}}</h5>
-      </div>
-    </div>
-  </div>
 
-</div>
-<div class="separator"><h2>PHỤ KIỆN RƯỢU VANG</h2></div>
-<div class="list-product-2">
-  <div *ngFor="let product of productList3">
-    <div class="card" style="width: 20rem;">
-      <a routerLink="/product/{{product.id}}"><img src="{{product.image}}" class="card-img-top"></a>
-      <div class="card-body">
-        <a routerLink="/product/{{product.id}}"><p style="font-size: 15px" class="card-text">{{product.name}}</p></a>
-        <h5 style="font-weight: bolder" class="card-title">{{product.price}}</h5>
-      </div>
-    </div>
-  </div>
-
-
-</div>
 
 <input class="form-check-input" type="checkbox" hidden id="btn-checkout">
 <label for="btn-checkout" class="nav__overlay">

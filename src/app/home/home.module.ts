@@ -6,10 +6,11 @@ import { HomeComponent } from './home.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, AuthComponent, LoginComponent],
+  declarations: [HomeComponent, AuthComponent, LoginComponent, ProductDetailComponent],
     imports: [
         CommonModule,
         HomeRoutingModule,

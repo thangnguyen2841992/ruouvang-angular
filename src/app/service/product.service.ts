@@ -33,6 +33,9 @@ export class ProductService {
   getProductById(productID: number): Observable<ProductEntity> {
     return this.http.get<ProductEntity>(`${API_URL}/${productID}`);
   }
+  getProductByIdDTO(productID: number): Observable<Product> {
+    return this.http.get<Product>(`${API_URL}/dto/${productID}`);
+  }
 
   getAllAcoholByOriginId(originId: number, offset: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/origin/${originId}?offset=${offset}`);
