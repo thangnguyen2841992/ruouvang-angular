@@ -154,8 +154,17 @@
     </ul>
   </div>
   <div id="nav__pc-3-cart" class="position-absolute top-0 end-0">
-    <button class="cart-btn">Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i></button>
+    <button href="#" class="notification">
+      <span><h5 style="margin-bottom: 10px">Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i></h5> </span>
+      <span class="badge">{{invoice.totalQuantity}}</span>
+    </button>
+    <div id="list-cart" class="dropdown-content" style="width: 300px">
+    <a *ngFor="let type of typeList">{{type.name}}
+      <hr style="border-top: 1px solid black">
+    </a>
   </div>
+  </div>
+
 </div>
 <div class="nav-search">
   <input type="text" id="search-form-2" placeholder="Tìm kiếm sản phẩm" size="120">

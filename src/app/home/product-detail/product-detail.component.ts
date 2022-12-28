@@ -10,6 +10,7 @@ import {AuthService} from '../../service/auth.service';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {CartService} from '../../service/cart/cart.service';
+import {Invoice} from '../../model/invoice';
 
 @Component({
   selector: 'app-product-detail',
@@ -26,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
   productId = 0;
   product: Product = {};
   quantity = 1;
+  invoice: Invoice = {};
 
   constructor(private originService: OriginService,
               private accessoryService: AccessoryService,
@@ -45,6 +47,7 @@ export class ProductDetailComponent implements OnInit {
     this.showAllType();
     this.checkLogin();
     this.findProductById();
+    this.getInvoiceOfUser();
   }
 
   getAllOrigin() {
@@ -114,7 +117,12 @@ export class ProductDetailComponent implements OnInit {
     };
     this.cartService.createNewCart(cart).subscribe((data) => {
       alert('Thêm sản phẩm vào giỏ hàng thành công');
+      this.getInvoiceOfUser();
     });
   }
-
+  getInvoiceOfUser() {
+    this.cartService.getInvoiceOfUser(this.currentUserId).subscribe((data) => {
+      this.invoice = data;
+    });
+  }
 }
