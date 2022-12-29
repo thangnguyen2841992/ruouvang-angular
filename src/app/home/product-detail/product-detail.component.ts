@@ -120,6 +120,14 @@ export class ProductDetailComponent implements OnInit {
       this.getInvoiceOfUser();
     });
   }
+
+  deleteCart(cartID: number) {
+    this.cartService.deleteCart(cartID).subscribe((data) => {
+      alert('Xoá sản phẩm khỏi giỏ hàng thành công');
+      this.getInvoiceOfUser();
+    });
+  }
+
   getInvoiceOfUser() {
     this.cartService.getInvoiceOfUser(this.currentUserId).subscribe((data) => {
       this.invoice = data;

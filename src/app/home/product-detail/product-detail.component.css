@@ -326,38 +326,12 @@ a:hover {
   color: yellow;
   text-decoration: underline;
 }
-.notification {
-  background-color: white;
-  color: black;
-  text-decoration: none;
-  padding: 15px 26px;
-  position: relative;
-  display: inline-block;
-  height: 50px;
-  margin-top: 10px;
-  border-radius: 20px;
-}
 
-.notification:hover {
-  background: yellow;
-}
-#list-cart {
-  display: none;
-}
-.notification:hover ~ #list-cart {
-  display: block;
-}
 
-.notification .badge {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  background: red;
-  color: white;
-}
 /*test  */
+#cart-link:hover {
+  text-decoration: none;
+}
 /*end test*/
 @media (min-width: 1800px) {
   #nav-1-left {

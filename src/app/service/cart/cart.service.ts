@@ -19,4 +19,7 @@ export class CartService {
   createNewCart(cart): Observable<any> {
   return   this.http.post(`${API_URL}`, cart);
   }
+  deleteCart(cartId: number): Observable<any> {
+    return this.http.delete(`${API_URL}/cart/${cartId}`);
+  }
 }
