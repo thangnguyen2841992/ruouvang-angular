@@ -392,6 +392,9 @@ a:hover {
   #sidebar-content {
     margin-right: 200px;
   }
+  .product-content {
+    margin-left: 50px;
+  }
 }
 
 @media (min-width: 1600px) and (max-width: 1800px) {
