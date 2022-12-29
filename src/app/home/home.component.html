@@ -73,8 +73,9 @@
 </nav>
 
 <div class="nav-2 position-relative">
-  <div id="img-logo" class="position-absolute top-0 start-0"><img
-    src="https://ruouvang68.com/wp-content/uploads/2021/10/Ruouvang68.com-logo-1024x290.png" height="90px">
+  <div id="img-logo" class="position-absolute top-0 start-0">
+    <a routerLink="/home"><img
+      src="https://ruouvang68.com/wp-content/uploads/2021/10/Ruouvang68.com-logo-1024x290.png" height="90px"></a>
   </div>
   <label for="btn-checkout" class="nav__pc-btn">
     <i class="fa-solid fa-bars"></i>
@@ -105,7 +106,7 @@
 <div id="nav-pc-3" class="nav__pc-3 position-relative">
   <div id="nav-pc-list-1" class="position-absolute top-0 start-0">
     <ul class="nav__pc-list">
-      <li><a class="nav__item"><h5>
+      <li><a routerLink="/home" class="nav__item"><h5>
         Trang chủ
       </h5>
       </a>
@@ -154,8 +155,43 @@
     </ul>
   </div>
   <div id="nav__pc-3-cart" class="position-absolute top-0 end-0">
-    <button class="cart-btn">Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i></button>
+    <li class="nav-item dropdown">
+      <button style="margin-top: 10px; border-radius: 20px" class="nav-link" data-toggle="dropdown" href="#">
+        Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i>
+        <span *ngIf="invoice.totalQuantity > 0" class="badge badge-danger navbar-badge">{{invoice.totalQuantity}}</span>
+      </button>
+      <div   class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <div *ngIf="invoice.totalQuantity === 0" style="height: 50px; width: 300px">
+          <p style="text-align: center; margin-top: 20px" >Chưa có sản phẩm nào trong giỏ hàng</p>
+
+        </div>
+
+        <a id="cart-link"  class="dropdown-item" *ngFor="let cart of invoice.cartsOfUser">
+          <!-- Message Start -->
+          <div class="media">
+            <img src="{{cart.productImg}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+
+                <span class="float-right text-sm text-danger"><i id="icon-delete-cart" style="font-size: 20px" (click)="getCartId(cart.id, cart.productName)"  data-toggle="modal" data-target="#delete-cart"  class="fa-regular fa-circle-xmark"></i></span>
+              </h3>
+              <p class="text-sm">{{cart.productName}}</p>
+              <p class="text-sm text-muted">{{cart.quantity}} x {{cart.productPrice}}</p>
+            </div>
+          </div>
+          <!-- Message End -->
+        </a>
+        <div  class="dropdown-divider"></div>
+        <p *ngIf="invoice.totalQuantity > 0"  class="dropdown-item dropdown-footer">Tổng giá tiền: {{invoice.totalPayment}}</p>
+        <div class="dropdown-divider"></div>
+
+        <a *ngIf="invoice.totalQuantity > 0" style="background-color: grey" href="#" class="btn  dropdown-item dropdown-footer">Xem giỏ hàng</a>
+        <a *ngIf="invoice.totalQuantity > 0" style="background-color: yellow; margin-top: 10px"  href="#" class="btn dropdown-item dropdown-footer">Thanh toán</a>
+      </div>
+    </li>
+
   </div>
+
 </div>
 <div class="nav-search">
   <input type="text" id="search-form-2" placeholder="Tìm kiếm sản phẩm" size="120">
@@ -306,3 +342,18 @@
 </nav>
 </body>
 </html>
+<div class="modal fade" id="delete-cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa sản phẩm "{{productName}}" khỏi giỏ hàng chứ?</h5>
+        <span type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteCart(cartId)">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+
+    </div>
+  </div>
+</div>

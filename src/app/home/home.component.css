@@ -326,6 +326,13 @@ a:hover {
   color: yellow;
   text-decoration: underline;
 }
+#cart-link:hover {
+  text-decoration: none;
+}
+#icon-delete-cart:hover {
+
+  color: black;
+}
 @media (min-width: 1800px) {
   #nav-1-left {
     margin-left: 180px;

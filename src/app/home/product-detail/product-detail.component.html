@@ -73,8 +73,9 @@
 </nav>
 
 <div class="nav-2 position-relative">
-  <div id="img-logo" class="position-absolute top-0 start-0"><img
-    src="https://ruouvang68.com/wp-content/uploads/2021/10/Ruouvang68.com-logo-1024x290.png" height="90px">
+  <div id="img-logo" class="position-absolute top-0 start-0">
+    <a routerLink="/home"><img
+      src="https://ruouvang68.com/wp-content/uploads/2021/10/Ruouvang68.com-logo-1024x290.png" height="90px"></a>
   </div>
   <label for="btn-checkout" class="nav__pc-btn">
     <i class="fa-solid fa-bars"></i>
@@ -105,7 +106,7 @@
 <div id="nav-pc-3" class="nav__pc-3 position-relative">
   <div id="nav-pc-list-1" class="position-absolute top-0 start-0">
     <ul class="nav__pc-list">
-      <li><a class="nav__item"><h5>
+      <li><a routerLink="/home" class="nav__item"><h5>
         Trang chủ
       </h5>
       </a>
@@ -154,15 +155,6 @@
     </ul>
   </div>
   <div id="nav__pc-3-cart" class="position-absolute top-0 end-0">
-<!--    <button href="#" class="notification">-->
-<!--      <span><h5 style="margin-bottom: 10px">Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i></h5> </span>-->
-<!--      <span class="badge">{{invoice.totalQuantity}}</span>-->
-<!--    </button>-->
-<!--    <div  class="dropdown-content-cart" style="width: 300px">-->
-<!--    <a *ngFor="let type of typeList">{{type.name}}-->
-<!--      <hr style="border-top: 1px solid black">-->
-<!--    </a>-->
-<!--  </div>-->
     <li class="nav-item dropdown">
       <button style="margin-top: 10px; border-radius: 20px" class="nav-link" data-toggle="dropdown" href="#">
         Giỏ Hàng <i class="fa-solid fa-cart-shopping"></i>
@@ -181,7 +173,7 @@
             <div class="media-body">
               <h3 class="dropdown-item-title">
 
-                <span class="float-right text-sm text-danger"><i (click)="deleteCart(cart.id)" class="fa-regular fa-circle-xmark"></i></span>
+                <span class="float-right text-sm text-danger"><i id="icon-delete-cart" style="font-size: 20px" (click)="getCartId(cart.id, cart.productName)"  data-toggle="modal" data-target="#delete-cart" class="fa-regular fa-circle-xmark"></i></span>
               </h3>
               <p class="text-sm">{{cart.productName}}</p>
               <p class="text-sm text-muted">{{cart.quantity}} x {{cart.productPrice}}</p>
@@ -206,56 +198,101 @@
   <button id="btn-search-2"><i class="fa-solid fa-magnifying-glass"></i></button>
 </div>
 <div style="margin-top: 20px" class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-1">
+  <div  class="content position-relative">
 
-      </div>
-      <div class="col-lg-3">
-        <img src="{{product.image}}" alt="ảnh sản phẩm" width="400" height="400px">
-      </div>
-      <!-- /.col-md-6 -->
-      <div class="col-lg-5">
+      <div id="product-detail-content" class="position-absolute top-0 start-0">
+        <ul style="  display: flex;
+  list-style: none;">
+          <li>
+            <img src="{{product.image}}" alt="ảnh sản phẩm" width="300" height="300">
 
-        <!-- general form elements -->
-        <div class="card card-primary">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-            <li class="breadcrumb-item active">{{product.origin}}</li>
-          </ol>
-          <!-- form start -->
-            <div class="card-body">
-              <div class="form-group">
-                <h4 style="font-weight: bolder">{{product.name}}</h4>
-              </div>
-              <div class="form-group">
-                <h5 style="color: red; font-weight: bolder">{{product.price}}</h5>
-              </div>
-              <div class="form-group">
-               <p>{{product.description}}</p>
-              </div>
-              <div class="form-group">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item"><p (click)="subQuantity()" style="cursor: pointer" class="page-link">-</p></li>
-                    <li class="page-item"><p class="page-link">{{quantity}}</p></li>
-                    <li class="page-item"><p (click)="addQuantity()" style="cursor: pointer" class="page-link">+</p></li>
-                    <li style="margin-left: 20px">
-                      <a (click)="createNewCart()" style="background-color: black; color: white; font-weight: bolder" class="page-link">
-                         Thêm vào giỏ hàng</a></li>
-                  </ul>
-                </nav>
+          </li>
+          <li>
+            <div id="product-content" style="width: 650px" class="card card-primary">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item active">{{product.origin}}</li>
+              </ol>
+              <!-- form start -->
+              <div class="card-body">
+                <div class="form-group">
+                  <h4 style="font-weight: bolder">{{product.name}}</h4>
+                </div>
+                <div class="form-group">
+                  <h5 style="color: red; font-weight: bolder">{{product.price}}</h5>
+                </div>
+                <div class="form-group">
+                  <p>{{product.description}}</p>
+                </div>
+                <div class="form-group">
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item"><p (click)="subQuantity()" style="cursor: pointer" class="page-link">-</p></li>
+                      <li class="page-item"><p class="page-link">{{quantity}}</p></li>
+                      <li class="page-item"><p (click)="addQuantity()" style="cursor: pointer" class="page-link">+</p></li>
+                      <li style="margin-left: 20px">
+                        <a (click)="createNewCart()" style="background-color: black; color: white; font-weight: bolder" class="page-link">
+                          Thêm vào giỏ hàng</a></li>
+                    </ul>
+                  </nav>
+                </div>
               </div>
             </div>
-        </div>
+
+          </li>
+        </ul>
+
+        <!-- general form elements -->
 
       </div>
 
 
+        <aside id="sidebar-content" style="width: 300px" class=" elevation-4 position-absolute top-0 end-0">
+          <div class="sidebar">
+
+            <nav class="mt-2">
+
+              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+<li class="nav-item">
+  <h5 style="background-color: orange; text-align: center; width: 285px" class="btn">DANH MỤC SẢN PHẨM</h5>
+</li>
+                <li class="nav-item" *ngFor="let accessory of accessoryList">
+                  <a style="height: 20px" href="pages/calendar.html" class="nav-link">
+                    <p style="font-size: 15px">
+                      {{accessory.name}}
+                      <span class="badge badge-info right">2</span>
+                    </p>
+                  </a>
+                  <hr>
+                </li>
+                <li class="nav-item">
+                  <a style="height: 20px" href="pages/calendar.html" class="nav-link">
+                    <p style="font-size: 15px">
+                      Quà Tết
+                      <span class="badge badge-info right">2</span>
+                    </p>
+                  </a>
+                  <hr>
+                </li>
+                <li class="nav-item" *ngFor="let origin of originList">
+                  <a style="height: 20px" href="pages/calendar.html" class="nav-link">
+                    <p style="font-size: 15px">
+                      {{origin.name}}
+                      <span class="badge badge-info right">2</span>
+                    </p>
+                  </a>
+                  <hr>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
+      </div>
       <!-- /.col-md-6 -->
     </div>
-  </div>
-</div>
+
+
+
 
 
 <input class="form-check-input" type="checkbox" hidden id="btn-checkout">
@@ -311,3 +348,18 @@
 </nav>
 </body>
 </html>
+<div class="modal fade" id="delete-cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa sản phẩm "{{productName}}" khỏi giỏ hàng chứ?</h5>
+        <span type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteCart(cartId)">Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+
+    </div>
+  </div>
+</div>

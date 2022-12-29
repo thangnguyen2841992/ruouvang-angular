@@ -9,6 +9,8 @@ import {ProductService} from '../service/product.service';
 import {TypeService} from '../service/type.service';
 import {Observable} from 'rxjs';
 import {Type} from '../model/type';
+import {Invoice} from '../model/invoice';
+import {CartService} from '../service/cart/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -26,12 +28,16 @@ export class HomeComponent implements OnInit {
   offset3 = 0;
   offset1and2 = 0;
   isLogin: boolean;
+  invoice: Invoice = {};
+  cartId: number;
+  productName: string;
 
   constructor(private originService: OriginService,
               private accessoryService: AccessoryService,
               private typeService: TypeService,
               private authService: AuthService,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private cartService: CartService) {
   }
 
   ngOnInit() {
@@ -41,6 +47,8 @@ export class HomeComponent implements OnInit {
     this.getAllAccessory();
     this.getAllAlcohol();
     this.checkLogin();
+    this.getInvoiceOfUser();
+
   }
 
   getAllOrigin() {
@@ -93,5 +101,25 @@ export class HomeComponent implements OnInit {
 
   get username() {
     return this.authService.currentUserValue.username;
+  }
+
+  get currentUserId() {
+    return this.authService.currentUserValue.id;
+  }
+  deleteCart(cartID: number) {
+    this.cartService.deleteCart(cartID).subscribe((data) => {
+      alert('Xoá sản phẩm khỏi giỏ hàng thành công');
+      this.getInvoiceOfUser();
+    });
+  }
+
+  getInvoiceOfUser() {
+    this.cartService.getInvoiceOfUser(this.currentUserId).subscribe((data) => {
+      this.invoice = data;
+    });
+  }
+  getCartId(id: number, name: string) {
+    this.cartId = id;
+    this.productName = name;
   }
 }

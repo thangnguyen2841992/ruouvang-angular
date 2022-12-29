@@ -332,6 +332,10 @@ a:hover {
 #cart-link:hover {
   text-decoration: none;
 }
+#icon-delete-cart:hover {
+
+  color: black;
+}
 /*end test*/
 @media (min-width: 1800px) {
   #nav-1-left {
@@ -382,6 +386,12 @@ a:hover {
     margin-left: 220px;
     margin-right: 220px;
   }
+  #product-detail-content {
+    margin-left: 170px;
+  }
+  #sidebar-content {
+    margin-right: 200px;
+  }
 }
 
 @media (min-width: 1600px) and (max-width: 1800px) {
@@ -426,6 +436,12 @@ a:hover {
   }
   .list-product-1 {
     margin-left: 140px;
+    margin-right: 140px;
+  }
+  #product-detail-content {
+    margin-left: 110px;
+  }
+  #sidebar-content {
     margin-right: 140px;
   }
 }
@@ -476,6 +492,12 @@ a:hover {
   }
   #card-product {
     width: 18rem;
+  }
+  #product-detail-content {
+    margin-left: 50px;
+  }
+  #sidebar-content {
+    margin-right: 80px;
   }
 }
 @media (max-width: 1400px) {

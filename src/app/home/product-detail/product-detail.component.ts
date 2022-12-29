@@ -28,6 +28,8 @@ export class ProductDetailComponent implements OnInit {
   product: Product = {};
   quantity = 1;
   invoice: Invoice = {};
+  cartId: number;
+  productName: string;
 
   constructor(private originService: OriginService,
               private accessoryService: AccessoryService,
@@ -132,5 +134,10 @@ export class ProductDetailComponent implements OnInit {
     this.cartService.getInvoiceOfUser(this.currentUserId).subscribe((data) => {
       this.invoice = data;
     });
+  }
+
+  getCartId(id: number, name: string) {
+    this.cartId = id;
+    this.productName = name;
   }
 }
