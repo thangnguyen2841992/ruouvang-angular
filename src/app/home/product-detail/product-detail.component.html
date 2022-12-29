@@ -242,9 +242,9 @@
         </ul>
 
         <!-- general form elements -->
-        <fieldset style="width: 1000px;border: 1px grey">
-          <legend>Mô tả</legend>
-          <h5 [innerHTML]="product.content"></h5>
+        <fieldset  class="product-content" style="width: 990px;border: 1px solid grey">
+          <legend style=" background-color:orange;color: white;padding: 5px 10px;">Mô tả</legend>
+          <h6 style="margin-left: 15px; margin-right: 15px" [innerHTML]="product.content"></h6>
 
         </fieldset>
       </div>
