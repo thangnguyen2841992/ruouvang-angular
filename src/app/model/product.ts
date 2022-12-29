@@ -11,7 +11,7 @@ export interface Product {
 
   image?: string;
   accessory?: string;
-
+  content?: string;
 
   origin?: string;
 

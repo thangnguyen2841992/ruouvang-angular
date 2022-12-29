@@ -189,7 +189,6 @@
         <a *ngIf="invoice.totalQuantity > 0" style="background-color: yellow; margin-top: 10px"  href="#" class="btn dropdown-item dropdown-footer">Thanh toán</a>
       </div>
     </li>
-
   </div>
 
 </div>
@@ -243,7 +242,11 @@
         </ul>
 
         <!-- general form elements -->
+        <fieldset style="width: 1000px;border: 1px grey">
+          <legend>Mô tả</legend>
+          <h5 [innerHTML]="product.content"></h5>
 
+        </fieldset>
       </div>
 
 

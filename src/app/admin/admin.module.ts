@@ -16,20 +16,22 @@ import { EditAccessoryComponent } from './edit-accessory/edit-accessory.componen
 import { ListAlcoholByOriginComponent } from './list-alcohol-by-origin/list-alcohol-by-origin.component';
 import { ListAcoholByTypeComponent } from './list-acohol-by-type/list-acohol-by-type.component';
 import {MatCardModule, MatProgressSpinnerModule} from '@angular/material';
+import {EditorComponent, EditorModule} from '@tinymce/tinymce-angular';
 
 
 @NgModule({
   declarations: [AdminComponent, CreateProductComponent, EditProductComponent, CreateProductAccessoryComponent, ListAccessoryComponent, EditAccessoryComponent, ListAlcoholByOriginComponent, ListAcoholByTypeComponent],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    MatProgressSpinnerModule,
-    MatCardModule
-  ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        AngularFirestoreModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        MatProgressSpinnerModule,
+        MatCardModule,
+        EditorModule
+    ],
   providers: [
     AngularFireStorage
   ]

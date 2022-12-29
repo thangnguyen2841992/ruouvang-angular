@@ -11,5 +11,7 @@ export interface Cart {
 
   productPrice?: string;
 
+  content?: string;
+
   userId?: number;
 }
