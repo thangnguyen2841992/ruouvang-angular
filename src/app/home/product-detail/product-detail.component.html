@@ -6,6 +6,7 @@
 
 
 </head>
+
 <body>
 <nav id="nav-bar-1" class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -242,10 +243,9 @@
         </ul>
 
         <!-- general form elements -->
-        <fieldset  class="product-content" style="width: 1000px;border: 1px solid grey">
+        <fieldset  class="product-content" style="width: 1000px;border: 1px solid #ccc">
           <legend style=" background-color:orange;color: white;padding: 5px 10px;">Mô tả</legend>
-          <h6 style="margin-left: 15px; margin-right: 15px" [innerHTML]="product.content"></h6>
-
+          <h6 class="content_desc" [innerHTML]="product.content"></h6>
         </fieldset>
       </div>
 
@@ -350,6 +350,9 @@
   </ul>
 </nav>
 </body>
+<style>
+
+</style>
 </html>
 <div class="modal fade" id="delete-cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

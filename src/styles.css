@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+.wp-caption>a>img,
+.content_desc>p>a>img{
+  max-width: 970px;
+  height: auto;
+  display: block;
+  margin:auto;
+}
+
+figcaption.wp-caption-text {
+  margin-top: 5px;
+  text-align: center;
+}
+/*.aligncenter{*/
+/*  margin: 0 auto;*/
+/*}*/
+/*img.wp-image-864.size-full.lazy-load-active {*/
+/*  max-width: 950px;*/
+/*  height: auto;*/
+/*}*/
+.content_desc>p,
+.content_desc>h2,
+.content_desc>h1{
+  text-align: justify;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
