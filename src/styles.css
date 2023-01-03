@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 .wp-caption>a>img,
-.content_desc>p>a>img{
-  max-width: 970px;
+.content_desc>p>a>img,
+.woocommerce-Tabs-panel>p>a>img{
+  max-width: 1020px;
   height: auto;
   display: block;
   margin:auto;
@@ -20,6 +21,7 @@ figcaption.wp-caption-text {
 /*}*/
 .content_desc>p,
 .content_desc>h2,
+.content_desc>h4,
 .content_desc>h1{
   text-align: justify;
   margin-left: 15px;

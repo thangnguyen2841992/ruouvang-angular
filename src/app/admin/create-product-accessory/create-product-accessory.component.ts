@@ -32,7 +32,9 @@ export class CreateProductAccessoryComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
     quantity: new FormControl('', [Validators.required]),
-    image: new FormControl('', [Validators.required])
+    image: new FormControl('', [Validators.required]),
+    content: new FormControl('',[Validators.required])
+
   });
 
   constructor(private authService: AuthService,
@@ -105,7 +107,8 @@ export class CreateProductAccessoryComponent implements OnInit {
             image: this.imageLink,
             originId: this.originId,
             accessoryId: this.accessoryId,
-            typeId: this.typeId
+            typeId: this.typeId,
+            content: this.productForm.value.content
           };
           this.productService.createNewProductOfProject(productForm).subscribe(() => {
             alert('Tạo mới sản phẩm thành công!');

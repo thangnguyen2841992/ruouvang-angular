@@ -11,6 +11,8 @@ import {ProductService} from '../../service/product.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {CartService} from '../../service/cart/cart.service';
 import {Invoice} from '../../model/invoice';
+import {OriginDto} from '../../model/origin-dto';
+import {AccessoryDto} from '../../model/accessory-dto';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,13 +21,15 @@ import {Invoice} from '../../model/invoice';
 })
 export class ProductDetailComponent implements OnInit {
   originList: Origin[] = [];
+  originDTOList: OriginDto[] = [];
   accessoryList: Accessory[] = [];
+  accessoryListDTO: AccessoryDto[] = [];
   typeList: Type[] = [];
   isShowAllBrand = false;
   category: Origin = {};
   isLogin: boolean;
   productId = 0;
-  product: Product = {};
+  product: Product[] = [];
   quantity = 1;
   invoice: Invoice = {};
   cartId: number;
@@ -38,18 +42,30 @@ export class ProductDetailComponent implements OnInit {
               private productService: ProductService,
               private activeRouter: ActivatedRoute,
               private cartService: CartService) {
+  }
+
+  ngOnInit() {
+    this.getAllOrigin();
+    this.getAllOriginDTO();
+    this.showAllAccessory();
+    this.showAllAccessoryDTO();
+    this.showAllType();
+    this.checkLogin();
+    this.getProductID();
+    this.findProductById();
+    this.getInvoiceOfUser();
+  }
+
+  getProductID() {
     this.activeRouter.paramMap.subscribe((paramMap: ParamMap) => {
       this.productId = +paramMap.get('productId');
     });
   }
 
-  ngOnInit() {
-    this.getAllOrigin();
-    this.showAllAccessory();
-    this.showAllType();
-    this.checkLogin();
-    this.findProductById();
-    this.getInvoiceOfUser();
+  findProductById() {
+    this.productService.getProductByIdDTO1(this.productId).subscribe((data) => {
+      this.product = data;
+    });
   }
 
   getAllOrigin() {
@@ -58,9 +74,21 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
+  getAllOriginDTO() {
+    this.originService.getAllOriginDTOOfProject().subscribe((data) => {
+      this.originDTOList = data;
+    });
+  }
+
   showAllAccessory() {
     this.accessoryService.getAllAccessoryOfProject().subscribe((data) => {
       this.accessoryList = data;
+    });
+  }
+
+  showAllAccessoryDTO() {
+    this.accessoryService.getAllAccessoryDTOOfProject().subscribe((data) => {
+      this.accessoryListDTO = data;
     });
   }
 
@@ -74,11 +102,6 @@ export class ProductDetailComponent implements OnInit {
     this.isShowAllBrand = !this.isShowAllBrand;
   }
 
-  findProductById() {
-    this.productService.getProductByIdDTO(this.productId).subscribe((data) => {
-      this.product = data;
-    });
-  }
 
   logout() {
     this.authService.logout();
@@ -112,15 +135,19 @@ export class ProductDetailComponent implements OnInit {
   }
 
   createNewCart() {
-    const cart = {
-      quantity: this.quantity,
-      productId: this.productId,
-      userId: this.currentUserId,
-    };
-    this.cartService.createNewCart(cart).subscribe((data) => {
-      alert('Thêm sản phẩm vào giỏ hàng thành công');
-      this.getInvoiceOfUser();
-    });
+    if (!this.isLogin) {
+      alert('Bạn hãy đăng nhập để mua hàng nhé!');
+    } else {
+      const cart = {
+        quantity: this.quantity,
+        productId: this.productId,
+        userId: this.currentUserId,
+      };
+      this.cartService.createNewCart(cart).subscribe((data) => {
+        alert('Thêm sản phẩm vào giỏ hàng thành công');
+        this.getInvoiceOfUser();
+      });
+    }
   }
 
   deleteCart(cartID: number) {

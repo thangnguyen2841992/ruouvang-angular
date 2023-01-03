@@ -58,11 +58,17 @@ export class EditAccessoryComponent implements OnInit {
         price: new FormControl(data.price, [Validators.required]),
         quantity: new FormControl(data.quantity, [Validators.required]),
         description: new FormControl(data.description, [Validators.required]),
+        content: new FormControl('', [Validators.required])
       });
       this.originId = data.originId;
       this.typeId = data.typeId;
       this.imageLink = data.image;
       this.accessoryId = data.accessoryId;
+    });
+    this.productService.getProductByIdDTO(this.productId).subscribe((data) => {
+      this.productForm.patchValue({
+        content: data.content
+      });
     });
   }
 
@@ -133,6 +139,7 @@ export class EditAccessoryComponent implements OnInit {
       name: this.productForm.value.name,
       price: this.productForm.value.price,
       quantity: this.productForm.value.quantity,
+      content: this.productForm.value.content,
       image: this.imageLink,
       originId: this.originId,
       accessoryId: this.accessoryId,
