@@ -51,7 +51,7 @@ body {
 .nav__pc-3 {
   display: flex;
   align-items: center;
-  height: 68px;
+  height: 60px;
   background-color: #333;
 }
 
@@ -62,26 +62,32 @@ body {
 
 .nav__item {
   text-decoration: none;
-  color: yellow;
+  color: orange;
   font-size: 20px;
+
 }
 
 .nav__item h5 {
   padding: 20px;
   cursor: pointer;
+  font-weight: bolder;
 }
 
 /*dropdown*/
 .dropbtn {
   cursor: pointer;
-  color: yellow;
+  color: orange;
   padding: 20px;
   font-size: 20px;
 }
 
+
 .dropdown {
   position: relative;
   display: inline-block;
+}
+.dropdown>h5 {
+  font-weight: bolder;
 }
 
 .dropdown-content {
@@ -254,10 +260,6 @@ body {
 /*}*/
 a {
   cursor: pointer;
-}
-a:hover {
-  color: blue;
-  text-decoration: underline;
 }
 .list-mobile-1-item:hover {
   color: blue;

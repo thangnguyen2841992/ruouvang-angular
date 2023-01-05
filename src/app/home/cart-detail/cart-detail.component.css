@@ -51,7 +51,7 @@ body {
 .nav__pc-3 {
   display: flex;
   align-items: center;
-  height: 68px;
+  height: 60px;
   background-color: #333;
 }
 
@@ -62,26 +62,32 @@ body {
 
 .nav__item {
   text-decoration: none;
-  color: yellow;
+  color: orange;
   font-size: 20px;
+
 }
 
 .nav__item h5 {
   padding: 20px;
   cursor: pointer;
+  font-weight: bolder;
 }
 
 /*dropdown*/
 .dropbtn {
   cursor: pointer;
-  color: yellow;
+  color: orange;
   padding: 20px;
   font-size: 20px;
 }
 
+
 .dropdown {
   position: relative;
   display: inline-block;
+}
+.dropdown>h5 {
+  font-weight: bolder;
 }
 
 .dropdown-content {
@@ -255,10 +261,6 @@ body {
 a {
   cursor: pointer;
 }
-a:hover {
-  color: blue;
-  text-decoration: underline;
-}
 .list-mobile-1-item:hover {
   color: blue;
   text-decoration: deeppink;
@@ -386,8 +388,8 @@ a:hover {
     margin-left: 220px;
     margin-right: 220px;
   }
-  #product-detail-content {
-    margin-left: 170px;
+  #cart-detail {
+    margin-left: 220px;
   }
   #sidebar-content {
     margin-right: 200px;
@@ -441,8 +443,8 @@ a:hover {
     margin-left: 140px;
     margin-right: 140px;
   }
-  #product-detail-content {
-    margin-left: 110px;
+  #cart-detail {
+    margin-left: 140px;
   }
   #sidebar-content {
     margin-right: 140px;
@@ -496,8 +498,8 @@ a:hover {
   #card-product {
     width: 18rem;
   }
-  #product-detail-content {
-    margin-left: 50px;
+  #cart-detail {
+    margin-left: 60px;
   }
   #sidebar-content {
     margin-right: 80px;

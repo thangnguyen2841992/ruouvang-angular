@@ -26,6 +26,7 @@ export class ProductService {
   getAllAlcoholOfProject(offset: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/alcohol?offset=${offset}`);
   }
+
   getAllAlcoholNoPaginationOfProject(): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/all/alcohol`);
   }
@@ -33,19 +34,27 @@ export class ProductService {
   getProductById(productID: number): Observable<ProductEntity> {
     return this.http.get<ProductEntity>(`${API_URL}/${productID}`);
   }
+
   getProductByIdDTO(productID: number): Observable<Product> {
     return this.http.get<Product>(`${API_URL}/dto/${productID}`);
+  }
+
+  getProductByIdDTO1(productID: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${API_URL}/dto1/${productID}`);
   }
 
   getAllAcoholByOriginId(originId: number, offset: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/origin/${originId}?offset=${offset}`);
   }
+
   getAllAlcoholByOriginIdNoPaginationOfProject(originId: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/all/origin/${originId}`);
   }
+
   getAllAlcoholByTypeIdNoPaginationOfProject(typeId: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/all/type/${typeId}`);
   }
+
   getAllAcoholByTypeId(typeId: number, offset: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${API_URL}/type/${typeId}?offset=${offset}`);
   }
