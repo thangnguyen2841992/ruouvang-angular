@@ -186,7 +186,7 @@
         <p *ngIf="invoice.totalQuantity > 0"  class="dropdown-item dropdown-footer">Tổng giá tiền: {{invoice.totalPayment}}</p>
         <div class="dropdown-divider"></div>
 
-        <a *ngIf="invoice.totalQuantity > 0" style="background-color: grey" routerLink="/cart" class="btn  dropdown-item dropdown-footer">Xem giỏ hàng</a>
+        <a *ngIf="invoice.totalQuantity > 0" style="background-color: grey" href="#" class="btn  dropdown-item dropdown-footer">Xem giỏ hàng</a>
         <a *ngIf="invoice.totalQuantity > 0" style="background-color: yellow; margin-top: 10px"  href="#" class="btn dropdown-item dropdown-footer">Thanh toán</a>
       </div>
     </li>
@@ -200,99 +200,99 @@
 <div style="margin-top: 20px" class="content">
   <div  class="content position-relative">
 
-      <div id="product-detail-content" class="position-absolute top-0 start-0">
-        <ul style="  display: flex;
+    <div id="product-detail-content" class="position-absolute top-0 start-0">
+      <ul style="  display: flex;
   list-style: none;">
-          <li>
-            <img src="{{product.image}}" alt="ảnh sản phẩm" width="300" height="300">
+        <li>
+          <img src="{{product.image}}" alt="ảnh sản phẩm" width="300" height="300">
 
-          </li>
-          <li>
-            <div id="product-content" style="width: 715px" class="card card-primary">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                <li class="breadcrumb-item active">{{product.origin}}</li>
-              </ol>
-              <!-- form start -->
-              <div class="card-body">
-                <div class="form-group">
-                  <h4 style="font-weight: bolder">{{product.name}}</h4>
-                </div>
-                <div class="form-group">
-                  <h5 style="color: red; font-weight: bolder">{{product.price}}</h5>
-                </div>
-                <div class="form-group">
-                  <p>{{product.description}}</p>
-                </div>
-                <div class="form-group">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item"><p (click)="subQuantity()" style="cursor: pointer" class="page-link">-</p></li>
-                      <li class="page-item"><p class="page-link">{{quantity}}</p></li>
-                      <li class="page-item"><p (click)="addQuantity()" style="cursor: pointer" class="page-link">+</p></li>
-                      <li style="margin-left: 20px">
-                        <a (click)="createNewCart()" style="background-color: black; color: white; font-weight: bolder" class="page-link">
-                          Thêm vào giỏ hàng</a></li>
-                    </ul>
-                  </nav>
-                </div>
+        </li>
+        <li>
+          <div id="product-content" style="width: 715px" class="card card-primary">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+              <li class="breadcrumb-item active">{{product.origin}}</li>
+            </ol>
+            <!-- form start -->
+            <div class="card-body">
+              <div class="form-group">
+                <h4 style="font-weight: bolder">{{product.name}}</h4>
+              </div>
+              <div class="form-group">
+                <h5 style="color: red; font-weight: bolder">{{product.price}}</h5>
+              </div>
+              <div class="form-group">
+                <p>{{product.description}}</p>
+              </div>
+              <div class="form-group">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item"><p (click)="subQuantity()" style="cursor: pointer" class="page-link">-</p></li>
+                    <li class="page-item"><p class="page-link">{{quantity}}</p></li>
+                    <li class="page-item"><p (click)="addQuantity()" style="cursor: pointer" class="page-link">+</p></li>
+                    <li style="margin-left: 20px">
+                      <a (click)="createNewCart()" style="background-color: black; color: white; font-weight: bolder" class="page-link">
+                        Thêm vào giỏ hàng</a></li>
+                  </ul>
+                </nav>
               </div>
             </div>
-
-          </li>
-        </ul>
-
-        <!-- general form elements -->
-        <fieldset  class="product-content" style="width: 1000px;border: 1px solid #ccc">
-          <legend style=" background-color:orange;color: white;padding: 5px 10px;">Mô tả</legend>
-          <h6 class="content_desc" [innerHTML]="product.content"></h6>
-        </fieldset>
-      </div>
-
-
-        <aside id="sidebar-content" style="width: 300px" class=" elevation-4 position-absolute top-0 end-0">
-          <div class="sidebar">
-
-            <nav class="mt-2">
-
-              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-<li class="nav-item">
-  <h5 style="background-color: orange; text-align: center; width: 285px" class="btn">DANH MỤC SẢN PHẨM</h5>
-</li>
-                <li class="nav-item" *ngFor="let accessory of accessoryList">
-                  <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                    <p style="font-size: 15px">
-                      {{accessory.name}}
-                      <span class="badge badge-info right">2</span>
-                    </p>
-                  </a>
-                  <hr>
-                </li>
-                <li class="nav-item">
-                  <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                    <p style="font-size: 15px">
-                      Quà Tết
-                      <span class="badge badge-info right">2</span>
-                    </p>
-                  </a>
-                  <hr>
-                </li>
-                <li class="nav-item" *ngFor="let origin of originList">
-                  <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                    <p style="font-size: 15px">
-                      {{origin.name}}
-                      <span class="badge badge-info right">2</span>
-                    </p>
-                  </a>
-                  <hr>
-                </li>
-              </ul>
-            </nav>
           </div>
-        </aside>
-      </div>
-      <!-- /.col-md-6 -->
+
+        </li>
+      </ul>
+
+      <!-- general form elements -->
+      <fieldset  class="product-content" style="width: 1000px;border: 1px solid #ccc">
+        <legend style=" background-color:orange;color: white;padding: 5px 10px;">Mô tả</legend>
+        <h6 class="content_desc" [innerHTML]="product.content"></h6>
+      </fieldset>
     </div>
+
+
+    <aside id="sidebar-content" style="width: 300px" class=" elevation-4 position-absolute top-0 end-0">
+      <div class="sidebar">
+
+        <nav class="mt-2">
+
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <h5 style="background-color: orange; text-align: center; width: 285px" class="btn">DANH MỤC SẢN PHẨM</h5>
+            </li>
+            <li class="nav-item" *ngFor="let accessory of accessoryList">
+              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
+                <p style="font-size: 15px">
+                  {{accessory.name}}
+                  <span class="badge badge-info right">2</span>
+                </p>
+              </a>
+              <hr>
+            </li>
+            <li class="nav-item">
+              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
+                <p style="font-size: 15px">
+                  Quà Tết
+                  <span class="badge badge-info right">2</span>
+                </p>
+              </a>
+              <hr>
+            </li>
+            <li class="nav-item" *ngFor="let origin of originList">
+              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
+                <p style="font-size: 15px">
+                  {{origin.name}}
+                  <span class="badge badge-info right">2</span>
+                </p>
+              </a>
+              <hr>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+  </div>
+  <!-- /.col-md-6 -->
+</div>
 
 
 

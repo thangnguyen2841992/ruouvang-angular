@@ -8,10 +8,11 @@ import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, AuthComponent, LoginComponent, ProductDetailComponent, CartComponent],
+  declarations: [HomeComponent, AuthComponent, LoginComponent, ProductDetailComponent, CartComponent, CartDetailComponent],
     imports: [
         CommonModule,
         HomeRoutingModule,
