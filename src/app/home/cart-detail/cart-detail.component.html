@@ -225,10 +225,10 @@
           <td style="font-weight: bolder">{{cart.productPrice}}</td>
           <td> <nav aria-label="Page navigation example">
             <ul class="pagination">
-              <li class="page-item"><p (click)="subQuantity()" style="cursor: pointer; color: black; height: 30px" class="page-link">-</p>
+              <li class="page-item"><p (click)="subQuantity(cart.id)" style="cursor: pointer; color: black; height: 30px" class="page-link">-</p>
               </li>
               <li class="page-item"><p style="color: black; height: 30px" class="page-link">{{cart.quantity}}</p></li>
-              <li class="page-item"><p (click)="addQuantity()" style="cursor: pointer; color: black; height: 30px" class="page-link">+</p>
+              <li class="page-item"><p (click)="addQuantity(cart.id)" style="cursor: pointer; color: black; height: 30px" class="page-link">+</p>
               </li>
             </ul>
           </nav></td>

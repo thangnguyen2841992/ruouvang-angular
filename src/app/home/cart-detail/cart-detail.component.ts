@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Origin} from '../../model/origin';
 import {Accessory} from '../../model/accessory';
 import {Type} from '../../model/type';
@@ -13,6 +13,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {CartService} from '../../service/cart/cart.service';
 import {OriginDto} from '../../model/origin-dto';
 import {AccessoryDto} from '../../model/accessory-dto';
+import {QuantityProductCart} from '../../model/quantity-product-cart';
 
 @Component({
   selector: 'app-cart-detail',
@@ -35,6 +36,8 @@ export class CartDetailComponent implements OnInit {
   invoice: Invoice = {};
   cartId: number;
   productName: string;
+  quantityList: QuantityProductCart[] = [];
+  quantityProductCart: QuantityProductCart = {};
 
   constructor(private originService: OriginService,
               private accessoryService: AccessoryService,
@@ -55,6 +58,7 @@ export class CartDetailComponent implements OnInit {
     this.getProductID();
     this.findProductById();
     this.getInvoiceOfUser();
+    this.getQuantityOfCartProject();
   }
 
   getProductID() {
@@ -125,29 +129,22 @@ export class CartDetailComponent implements OnInit {
     return this.authService.currentUserValue.id;
   }
 
-  addQuantity() {
-    this.quantity = this.quantity + 1;
-  }
-
-  subQuantity() {
-    if (this.quantity > 1) {
-      this.quantity = this.quantity - 1;
+  addQuantity(cartId: number) {
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.quantityList.length; i++) {
+      if (this.quantityList[i].cartId === cartId) {
+        this.quantityList[i].quantity = this.quantityList[i].quantity + 1;
+      }
     }
+    console.log(this.quantityList);
   }
 
-  createNewCart() {
-    if (!this.isLogin) {
-      alert('Bạn hãy đăng nhập để mua hàng nhé!');
-    } else {
-      const cart = {
-        quantity: this.quantity,
-        productId: this.productId,
-        userId: this.currentUserId,
-      };
-      this.cartService.createNewCart(cart).subscribe((data) => {
-        alert('Thêm sản phẩm vào giỏ hàng thành công');
-        this.getInvoiceOfUser();
-      });
+  subQuantity(cartId: number) {
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.quantityList.length; i++) {
+      if (this.quantityList[i].cartId === cartId && this.quantityList[i].quantity > 0) {
+        this.quantityList[i].quantity = this.quantityList[i].quantity - 1;
+      }
     }
   }
 
@@ -169,4 +166,9 @@ export class CartDetailComponent implements OnInit {
     this.productName = name;
   }
 
+  getQuantityOfCartProject() {
+    this.cartService.getQuantityOfCart(this.currentUserId).subscribe((data) => {
+      this.quantityList = data;
+    });
+  }
 }
