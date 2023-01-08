@@ -34,6 +34,9 @@ export class ProductDetailComponent implements OnInit {
   invoice: Invoice = {};
   cartId: number;
   productName: string;
+  isDescription = true;
+  isInfo = false;
+  isStar = false;
 
   constructor(private originService: OriginService,
               private accessoryService: AccessoryService,
@@ -166,5 +169,15 @@ export class ProductDetailComponent implements OnInit {
   getCartId(id: number, name: string) {
     this.cartId = id;
     this.productName = name;
+  }
+
+  showInfo() {
+    this.isDescription = false;
+    this.isInfo = true;
+  }
+
+  showDesc() {
+    this.isDescription = true;
+    this.isInfo = false;
   }
 }

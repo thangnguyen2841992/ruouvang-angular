@@ -14,6 +14,7 @@ import {finalize} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ProgressSpinnerMode, ThemePalette} from '@angular/material';
+import {InfoAlcoholService} from '../../service/info-alcohol/info-alcohol.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -36,6 +37,7 @@ export class EditProductComponent implements OnInit {
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'determinate';
   value = 50;
+
   constructor(private productService: ProductService,
               private router: Router,
               private activeRouted: ActivatedRoute,
@@ -44,6 +46,7 @@ export class EditProductComponent implements OnInit {
               private typeService: TypeService,
               private accessoryService: AccessoryService,
               @Inject(AngularFireStorage) private storage: AngularFireStorage,
+              private infoAlcoholService: InfoAlcoholService
   ) {
     this.activeRouted.paramMap.subscribe((paramMap: ParamMap) => {
       this.productId = +paramMap.get('id');
@@ -64,7 +67,13 @@ export class EditProductComponent implements OnInit {
         price: new FormControl(data.price, [Validators.required]),
         quantity: new FormControl(data.quantity, [Validators.required]),
         description: new FormControl(data.description, [Validators.required]),
-        content: new FormControl('', [Validators.required])
+        image: new FormControl(data.image, [Validators.required]),
+        content: new FormControl('', [Validators.required]),
+        capacity: new FormControl(data.capacity, [Validators.required]),
+        grape: new FormControl(data.grape, [Validators.required]),
+        producer: new FormControl(data.producer, [Validators.required]),
+        concentration: new FormControl(data.concentration, [Validators.required]),
+        region: new FormControl(data.region, [Validators.required])
       });
       this.originId = data.originId;
       this.typeId = data.typeId;
@@ -73,9 +82,10 @@ export class EditProductComponent implements OnInit {
     this.productService.getProductByIdDTO(this.productId).subscribe((data) => {
       this.productForm.patchValue({
         content: data.content
-        });
+      });
     });
   }
+
   getAllOriginOfProject() {
     this.originService.getAllOriginOfProject().subscribe((data) => {
       this.originList = data;
@@ -101,6 +111,7 @@ export class EditProductComponent implements OnInit {
       }
     });
   }
+
   getAllAccessory() {
     this.accessoryService.getAllAccessoryOfProject().subscribe((data) => {
       this.accessoryList = data;
@@ -141,6 +152,11 @@ export class EditProductComponent implements OnInit {
       quantity: this.productForm.value.quantity,
       content: this.productForm.value.content,
       image: this.imageLink,
+      capacity: this.productForm.value.capacity,
+      grape: this.productForm.value.grape,
+      producer: this.productForm.value.producer,
+      concentration: this.productForm.value.concentration,
+      region: this.productForm.value.region,
       originId: this.originId,
       accessoryId: this.accessoryId,
       typeId: this.typeId

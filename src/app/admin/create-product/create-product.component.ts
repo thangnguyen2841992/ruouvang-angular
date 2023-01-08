@@ -34,7 +34,12 @@ export class CreateProductComponent implements OnInit {
     price: new FormControl('', [Validators.required]),
     quantity: new FormControl('', [Validators.required]),
     image: new FormControl('', [Validators.required]),
-    content: new FormControl('',[Validators.required])
+    content: new FormControl('',[Validators.required]),
+    capacity: new FormControl('', [Validators.required]),
+    grape: new FormControl('', [Validators.required]),
+    producer: new FormControl('', [Validators.required]),
+    concentration: new FormControl('', [Validators.required]),
+    region: new FormControl('', [Validators.required])
   });
 
   constructor(private authService: AuthService,
@@ -115,7 +120,12 @@ export class CreateProductComponent implements OnInit {
             originId: this.originId,
             accessoryId: this.accessoryId,
             typeId: this.typeId,
-            content: this.productForm.value.content
+            content: this.productForm.value.content,
+            capacity: this.productForm.value.capacity,
+            grape: this.productForm.value.grape,
+            producer: this.productForm.value.producer,
+            concentration: this.productForm.value.concentration,
+            region: this.productForm.value.region,
           };
           this.productService.createNewProductOfProject(productForm).subscribe(() => {
             alert('Tạo mới sản phẩm thành công!');

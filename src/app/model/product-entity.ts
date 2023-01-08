@@ -10,6 +10,15 @@ export interface ProductEntity {
   quantity?: number;
 
   image?: string;
+  capacity?: number;
+  grape?: string;
+
+
+  producer?: string;
+
+  concentration?: number;
+
+  region?: string;
 
   originId?: number;
 

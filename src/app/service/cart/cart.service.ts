@@ -18,15 +18,12 @@ export class CartService {
   getInvoiceOfUser(userId: number): Observable<Invoice> {
     return this.http.get<Invoice>(`${API_URL}/user/${userId}`);
   }
-
-  getQuantityOfCart(userId: number): Observable<QuantityProductCart[]> {
-    return this.http.get<QuantityProductCart[]>(`${API_URL}/list/quantity/user/${userId}`);
-  }
-
   createNewCart(cart): Observable<any> {
     return this.http.post(`${API_URL}`, cart);
   }
-
+  updateQuantity(invoice): Observable<Invoice> {
+    return this.http.put(`${API_URL}/updateQuantity`, invoice);
+  }
   deleteCart(cartId: number): Observable<any> {
     return this.http.delete(`${API_URL}/cart/${cartId}`);
   }

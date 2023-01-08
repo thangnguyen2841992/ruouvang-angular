@@ -37,7 +37,6 @@ export class CartDetailComponent implements OnInit {
   cartId: number;
   productName: string;
   quantityList: QuantityProductCart[] = [];
-  quantityProductCart: QuantityProductCart = {};
 
   constructor(private originService: OriginService,
               private accessoryService: AccessoryService,
@@ -58,7 +57,6 @@ export class CartDetailComponent implements OnInit {
     this.getProductID();
     this.findProductById();
     this.getInvoiceOfUser();
-    this.getQuantityOfCartProject();
   }
 
   getProductID() {
@@ -131,21 +129,26 @@ export class CartDetailComponent implements OnInit {
 
   addQuantity(cartId: number) {
     // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.quantityList.length; i++) {
-      if (this.quantityList[i].cartId === cartId) {
-        this.quantityList[i].quantity = this.quantityList[i].quantity + 1;
+    let quantityList = this.invoice.cartsOfUser;
+    // @ts-ignore
+    quantityList = quantityList.map((data) => {
+      if (data.id === cartId) {
+        data.quantity = data.quantity + 1;
+        return quantityList;
       }
-    }
-    console.log(this.quantityList);
+    });
   }
 
   subQuantity(cartId: number) {
     // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.quantityList.length; i++) {
-      if (this.quantityList[i].cartId === cartId && this.quantityList[i].quantity > 0) {
-        this.quantityList[i].quantity = this.quantityList[i].quantity - 1;
+    let quantityList = this.invoice.cartsOfUser;
+    // @ts-ignore
+    quantityList = quantityList.map((data) => {
+      if (data.id === cartId && data.quantity > 0) {
+        data.quantity = data.quantity - 1;
+        return quantityList;
       }
-    }
+    });
   }
 
   deleteCart(cartID: number) {
@@ -166,9 +169,10 @@ export class CartDetailComponent implements OnInit {
     this.productName = name;
   }
 
-  getQuantityOfCartProject() {
-    this.cartService.getQuantityOfCart(this.currentUserId).subscribe((data) => {
-      this.quantityList = data;
+  updateQuantity() {
+    this.cartService.updateQuantity(this.invoice).subscribe((data) => {
+      alert('Cập nhật giỏ hàng thành công!');
+      this.getInvoiceOfUser();
     });
   }
 }

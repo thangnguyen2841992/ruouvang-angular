@@ -165,22 +165,25 @@
           <p style="text-align: center; margin-top: 20px" >Chưa có sản phẩm nào trong giỏ hàng</p>
 
         </div>
-
-        <a id="cart-link"  class="dropdown-item" *ngFor="let cart of invoice.cartsOfUser">
+        <a id="cart-link" class="dropdown-item" *ngFor="let cart of invoice.cartsOfUser">
           <!-- Message Start -->
           <div class="media">
-            <img src="{{cart.productImg}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+            <a routerLink="/cart"><img src="{{cart.productImg}}" alt="User Avatar" class="img-size-50 mr-3 img-circle"></a>
             <div class="media-body">
               <h3 class="dropdown-item-title">
 
-                <span class="float-right text-sm text-danger"><i id="icon-delete-cart" style="font-size: 20px" (click)="getCartId(cart.id, cart.productName)"  data-toggle="modal" data-target="#delete-cart"  class="fa-regular fa-circle-xmark"></i></span>
+                <span class="float-right text-sm text-danger"><i id="icon-delete-cart" style="font-size: 20px"
+                                                                 (click)="getCartId(cart.id, cart.productName)"
+                                                                 data-toggle="modal" data-target="#delete-cart"
+                                                                 class="fa-regular fa-circle-xmark"></i></span>
               </h3>
-              <p class="text-sm">{{cart.productName}}</p>
+              <a routerLink="/cart"><p style="color:orange" class="text-sm">{{cart.productName}}</p></a>
               <p class="text-sm text-muted">{{cart.quantity}} x {{cart.productPrice}}</p>
             </div>
           </div>
           <!-- Message End -->
         </a>
+
         <div  class="dropdown-divider"></div>
         <p *ngIf="invoice.totalQuantity > 0"  class="dropdown-item dropdown-footer">Tổng giá tiền: {{invoice.totalPayment}}</p>
         <div class="dropdown-divider"></div>

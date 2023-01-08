@@ -338,6 +338,13 @@ a {
 
   color: black;
 }
+#delete-cart-icon {
+  color: grey;
+  font-size: 25px;
+}
+#delete-cart-icon:hover {
+  color: red;
+}
 /*end test*/
 @media (min-width: 1800px) {
   #nav-1-left {

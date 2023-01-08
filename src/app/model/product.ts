@@ -8,6 +8,15 @@ export interface Product {
   description?: string;
 
   quantity?: number;
+  capacity?: number;
+  grape?: string;
+
+  producer?: string;
+
+  concentration?: number;
+
+  region?: string;
+
 
   image?: string;
   accessory?: string;
