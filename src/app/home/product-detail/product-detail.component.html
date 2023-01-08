@@ -191,8 +191,10 @@
           tiền: {{invoice.totalPayment}}</p>
         <div class="dropdown-divider"></div>
 
-        <a *ngIf="invoice.totalQuantity > 0" style="background-color: grey" routerLink="/cart" class="btn  dropdown-item dropdown-footer">Xem giỏ hàng</a>
-        <a *ngIf="invoice.totalQuantity > 0" style="background-color: yellow; margin-top: 10px"  href="#" class="btn dropdown-item dropdown-footer">Thanh toán</a>
+        <a *ngIf="invoice.totalQuantity > 0" style="background-color: grey" routerLink="/cart"
+           class="btn  dropdown-item dropdown-footer">Xem giỏ hàng</a>
+        <a *ngIf="invoice.totalQuantity > 0" style="background-color: yellow; margin-top: 10px" href="#"
+           class="btn dropdown-item dropdown-footer">Thanh toán</a>
       </div>
     </li>
 
@@ -256,7 +258,9 @@
           <button class="btn" style="font-size: 20px; font-weight: bolder">Mô tả</button>
         </li>
         <li style="margin-left: 5px">
-          <button (click)="showInfo()" class="btn" style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Thông tin bổ sung</button>
+          <button (click)="showInfo()" class="btn"
+                  style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Thông tin bổ sung
+          </button>
         </li>
         <li style="margin-left: 5px">
           <button class="btn" style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Đánh giá</button>
@@ -264,7 +268,8 @@
       </ul>
       <!-- general form elements -->
       <div *ngIf="isDescription">
-        <fieldset  *ngFor="let product of product" class="product-content" style="width: 1050px;border: 1px solid #ccc;margin-top: -16px">
+        <fieldset *ngFor="let product of product" class="product-content"
+                  style="width: 1050px;border: 1px solid #ccc;margin-top: -16px">
           <br>
 
 
@@ -273,7 +278,9 @@
       </div>
       <ul *ngIf="isInfo" style="display: flex; list-style: none; margin-left: 20px; margin-top: 20px">
         <li>
-          <button (click)="showDesc()" class="btn" style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Mô Tả</button>
+          <button (click)="showDesc()" class="btn"
+                  style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Mô Tả
+          </button>
         </li>
         <li style="margin-left: 5px">
           <button class="btn" style="font-size: 20px; font-weight: bolder">Thông tin bổ sung</button>
@@ -285,74 +292,73 @@
       </ul>
       <!-- general form elements -->
       <div *ngIf="isInfo">
-        <fieldset  *ngFor="let product of product" class="product-content" style="width: 1050px;border: 1px solid #ccc;margin-top: -16px">
+        <fieldset *ngFor="let product of product" class="product-content"
+                  style="width: 1050px;height:330px ; border: 1px solid #ccc;margin-top: -16px">
           <br>
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
               <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p  style="font-size: 20px; font-weight: bolder; color: #212529">
+                <p style="font-size: 20px; font-weight: bolder; color: #212529">
                   DUNG TÍCH </p>
-                  <span class="right"
-                        style="font-size: 20px; color: black">{{product.capacity}}ml</span>
+                <span class="right"
+                      style="font-size: 20px; color: black">{{product.capacity}}ml</span>
 
               </a>
-              <hr style="border-top: 1px solid black">
+              <hr style="border-top: 1px solid grey">
 
             </li>
             <li class="nav-item">
               <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p  style="font-size: 20px; font-weight: bolder; color: #212529">
+                <p style="font-size: 20px; font-weight: bolder; color: #212529">
                   GIỐNG NHO </p>
-                  <span class="right"
-                        style="font-size: 20px; color: orange">{{product.grape}}</span>
+                <span class="right"
+                      style="font-size: 20px; color: orange">{{product.grape}}</span>
 
               </a>
-              <hr style="border-top: 1px solid black">
+              <hr style="border-top: 1px solid grey">
 
             </li>
             <li class="nav-item">
               <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p  style="font-size: 20px; font-weight: bolder; color: #212529">
+                <p style="font-size: 20px; font-weight: bolder; color: #212529">
                   LOẠI VANG </p>
-                  <span class="right"
-                        style="font-size: 20px; color: orange">{{product.type}}</span>
+                <span class="right"
+                      style="font-size: 20px; color: orange">{{product.type}}</span>
 
               </a>
-              <hr style="border-top: 1px solid black">
+              <hr style="border-top: 1px solid grey">
 
             </li>
             <li class="nav-item">
               <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p  style="font-size: 20px; font-weight: bolder; color: #212529">
+                <p style="font-size: 20px; font-weight: bolder; color: #212529">
                   NHÀ SẢN XUẤT </p>
-                  <span class="right"
-                        style="font-size: 20px; color: orange">{{product.producer}}</span>
+                <span class="right"
+                      style="font-size: 20px; color: orange">{{product.producer}}</span>
 
               </a>
-              <hr style="border-top: 1px solid black">
+              <hr style="border-top: 1px solid grey">
 
             </li>
             <li class="nav-item">
               <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p  style="font-size: 20px; font-weight: bolder; color: #212529">
-                  NỒNG ĐỘ  </p>
-                  <span class="right"
-                        style="font-size: 20px; color: black">{{product.concentration}}%</span>
+                <p style="font-size: 20px; font-weight: bolder; color: #212529">
+                  NỒNG ĐỘ </p>
+                <span class="right"
+                      style="font-size: 20px; color: black">{{product.concentration}}%</span>
 
               </a>
-              <hr style="border-top: 1px solid black">
+              <hr style="border-top: 1px solid grey">
 
             </li>
             <li class="nav-item">
               <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p  style="font-size: 20px; font-weight: bolder; color: #212529">
-                  VÙNG SẢN XUẤT  </p>
-                  <span class="right"
-                        style="font-size: 20px; color: orange">{{product.region}}</span>
+                <p style="font-size: 20px; font-weight: bolder; color: #212529">
+                  VÙNG SẢN XUẤT </p>
+                <span class="right"
+                      style="font-size: 20px; color: orange">{{product.region}}</span>
 
               </a>
-              <hr style="border-top: 1px solid black">
-
             </li>
           </ul>
 
@@ -385,7 +391,8 @@
               <a style="height: 20px" href="pages/calendar.html" class="nav-link">
                 <p style="font-size: 15px">
                   Quà Tết
-                  <span class="badge badge-info right" style="font-size: 15px; background: #fcb900; color: #4e342e">2</span>
+                  <span class="badge badge-info right"
+                        style="font-size: 15px; background: #fcb900; color: #4e342e">2</span>
                 </p>
               </a>
               <hr>
