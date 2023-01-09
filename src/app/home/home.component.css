@@ -303,7 +303,7 @@ a {
   margin-top: 20px;
   display: grid;
   grid-template-columns: auto auto auto auto;
-  grid-row-gap: 40px;
+  grid-row-gap: 41px;
 }
 .list-product-2 {
   margin-top: 20px;
