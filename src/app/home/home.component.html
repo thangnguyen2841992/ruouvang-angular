@@ -115,7 +115,7 @@
         <div class="dropdown">
           <h5 class="dropbtn">RƯỢU VANG NGOẠI <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">
-            <a id="brand-name" *ngFor="let origin of originList">{{origin.name}}
+            <a  id="brand-name" *ngFor="let origin of originList" routerLink="/origin/{{origin.id}}/{{origin.name}}">{{origin.name}}
               <hr style="border-top: 1px solid black">
             </a>
           </div>
@@ -125,7 +125,7 @@
         <div  class="dropdown">
           <h5 class="dropbtn">RƯỢU VANG NGON <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">
-            <a *ngFor="let type of typeList">{{type.name}}
+            <a *ngFor="let type of typeList" routerLink="/type/{{type.id}}/{{type.name}}">{{type.name}}
               <hr style="border-top: 1px solid black">
             </a>
           </div>
@@ -156,7 +156,7 @@
   </div>
   <div id="nav__pc-3-cart" class="position-absolute top-0 end-0">
     <li class="nav-item dropdown">
-      <button style="margin-top: 10px; border-radius: 20px; background: orange; font-weight: bolder" class="nav-link" data-toggle="dropdown" href="#">
+      <button style="margin-top: 10px; border-radius: 20px; background: #fcb900; font-weight: bolder" class="nav-link" data-toggle="dropdown" href="#">
         GIỎ HÀNG <i class="fa-solid fa-cart-shopping"></i>
         <span *ngIf="invoice.totalQuantity > 0" class="badge badge-danger navbar-badge">{{invoice.totalQuantity}}</span>
       </button>
@@ -255,7 +255,7 @@
 <!--end-carousel-->
 <!--Header-->
 <div class="header">
-  <h1>Rượu vang 68 – rượu vang nhập khẩu chính hãng</h1>
+  <h1 style="font-weight: bolder">Rượu vang 68 – rượu vang nhập khẩu chính hãng</h1>
   <p  style="text-align: justify" id="description">Shop rượu vang 68 (ruouvang68.com) là đơn vị nhập khẩu và phân phối rượu vang ngoại chính hãng
     hàng đầu Việt Nam. Với kinh nghiệm nhiều năm trong lĩnh vực đồ uống nhập khẩu, chúng tôi có những sản phẩm rượu vang
     ngon nhất, đảm bảo chính hãng 100% với chi phí hợp lý hơn với các khách hàng. Chúng tôi luôn có những sản phẩm đặc
@@ -263,28 +263,35 @@
 </div>
 <!--end-header-->
 <!--product-->
-<div class="separator"><h2>SẢN PHẨM BÁN CHẠY</h2></div>
+<div class="separator"><h3 style="font-weight: bolder">SẢN PHẨM BÁN CHẠY</h3></div>
 <!--list-product - 1-->
 <div class="list-product-1">
   <div *ngFor="let product of productList4">
-    <div class="card" style="width: 20rem;">
+    <div class="card" style="width: 20rem;height: 420px">
       <a routerLink="/product/{{product.id}}"><img src="{{product.image}}" class="card-img-top"></a>
       <div class="card-body">
         <a style="color: black" routerLink="/product/{{product.id}}"><p style="font-size: 15px" class="card-text">{{product.name}}</p></a>
-        <h5 style="font-weight: bolder" class="card-title">{{product.price}}</h5>
+      </div>
+      <div>
+        <h5 id="old-price" style="font-weight: bolder; margin-left: 6%; color: grey; text-decoration: line-through;" class="card-title">{{product.price}}</h5>
+
+        <h5 style="font-weight: bolder; margin-left: 6%; color: red" class="card-title">{{product.newPrice}}</h5>
+
       </div>
     </div>
   </div>
 
 </div>
-<div class="separator"><h2>PHỤ KIỆN RƯỢU VANG</h2></div>
+<div class="separator"><h3  style="font-weight: bolder">PHỤ KIỆN RƯỢU VANG</h3></div>
 <div class="list-product-2">
   <div *ngFor="let product of productList3">
-    <div class="card" style="width: 20rem;">
+    <div class="card" style="width: 20rem;height: 420px">
       <a routerLink="/product/{{product.id}}"><img src="{{product.image}}" class="card-img-top"></a>
       <div class="card-body">
-        <a routerLink="/product/{{product.id}}"><p style="font-size: 15px" class="card-text">{{product.name}}</p></a>
-        <h5 style="font-weight: bolder" class="card-title">{{product.price}}</h5>
+        <a style="color: black" routerLink="/product/{{product.id}}"><p style="font-size: 15px" class="card-text">{{product.name}}</p></a>
+      </div>
+      <div>
+        <h5 style="font-weight: bolder;  margin-left: 6%; color: red" class="card-title">{{product.price}}</h5>
       </div>
     </div>
   </div>

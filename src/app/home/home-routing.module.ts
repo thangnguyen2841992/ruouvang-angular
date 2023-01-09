@@ -5,6 +5,8 @@ import {AuthComponent} from './auth/auth.component';
 import {LoginComponent} from './login/login.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {CartDetailComponent} from './cart-detail/cart-detail.component';
+import {ListAlcoholByTypeComponent} from './list-alcohol-by-type/list-alcohol-by-type.component';
+import {ListAlcoholByTypeRealComponent} from './list-alcohol-by-type-real/list-alcohol-by-type-real.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartDetailComponent
+  },
+  {
+    path: 'origin/:typeId/:typeName',
+    component: ListAlcoholByTypeComponent
+  },
+  {
+    path: 'type/:typeId/:typeName',
+    component: ListAlcoholByTypeRealComponent
   }
 ];
 

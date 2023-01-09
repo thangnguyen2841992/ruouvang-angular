@@ -116,7 +116,7 @@
         <div class="dropdown">
           <h5 class="dropbtn">RƯỢU VANG NGOẠI <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">
-            <a id="brand-name" *ngFor="let origin of originList" routerLink="/origin/{{origin.id}}/{{origin.name}}">{{origin.name}}
+            <a id="brand-name" *ngFor="let origin of originList" routerLink="/origin/{{origin.id}}/{{origin.name}}" >{{origin.name}}
               <hr style="border-top: 1px solid black">
             </a>
           </div>
@@ -126,7 +126,7 @@
         <div class="dropdown">
           <h5 class="dropbtn">RƯỢU VANG NGON <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">
-            <a *ngFor="let type of typeList" routerLink="/type/{{type.id}}/{{type.name}}">{{type.name}}
+            <a *ngFor="let type of typeList" (click)="reloadComponent(type.id, type.name)">{{type.name}}
               <hr style="border-top: 1px solid black">
             </a>
           </div>
@@ -210,160 +210,26 @@
   <div class="content position-relative">
 
     <div id="product-detail-content" class="position-absolute top-0 start-0">
-      <ul *ngFor="let product of product" style="  display: flex;
-  list-style: none;">
-        <li>
-          <img src="{{product.image}}" alt="ảnh sản phẩm" width="300" height="300">
+      <h3 class="tittle-by-type">{{typeName}}</h3>
 
-        </li>
-        <li>
-          <div id="product-content" style="width: 765px" class="card card-primary">
-            <ol style="background: #fcb900;" class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a style="color: black">Trang chủ</a></li>
-              <li class="breadcrumb-item active" style="color: black">{{product.origin}}</li>
-            </ol>
-            <!-- form start -->
+      <div class="list-product-1">
+        <div *ngIf="products.length == 0" class="row justify-content-md-center">
+          <div class="col-md-auto">
+            <h5>Hiện chưa có sản phẩm nào</h5>
+          </div>
+        </div>
+        <div  *ngFor="let product of products">
+          <div *ngIf="products.length > 0" class="card" style="width: 15rem; height: 350px; margin-right: 25px">
+            <a routerLink="/product/{{product.id}}"><img src="{{product.image}}" class="card-img-top"></a>
             <div class="card-body">
-              <div class="form-group">
-                <h4 style="font-weight: bolder">{{product.name}}</h4>
-              </div>
-              <div class="form-group">
-                <h5 style="color: red; font-weight: bolder">{{product.price}}</h5>
-              </div>
-              <div class="form-group">
-                <p>{{product.description}}</p>
-              </div>
-              <div class="form-group">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination">
-                    <li class="page-item"><p (click)="subQuantity()" style="cursor: pointer" class="page-link">-</p>
-                    </li>
-                    <li class="page-item"><p class="page-link">{{quantity}}</p></li>
-                    <li class="page-item"><p (click)="addQuantity()" style="cursor: pointer" class="page-link">+</p>
-                    </li>
-                    <li style="margin-left: 20px">
-                      <a (click)="createNewCart()" style="background-color: #fcb900; color: white; font-weight: bolder"
-                         class="page-link">
-                        Thêm vào giỏ hàng</a></li>
-                  </ul>
-                </nav>
-              </div>
+              <a style="color: black" routerLink="/product/{{product.id}}"><p style="font-size: 15px" class="card-text">{{product.name}}</p></a>
+            </div>
+            <div>
+              <h5 style="font-weight: bolder; margin-left: 8%; color: red" class="card-title">{{product.price}}</h5>
+
             </div>
           </div>
-
-        </li>
-      </ul>
-      <ul *ngIf="isDescription" style="display: flex; list-style: none; margin-left: 20px; margin-top: 20px">
-        <li>
-          <button class="btn" style="font-size: 20px; font-weight: bolder">Mô tả</button>
-        </li>
-        <li style="margin-left: 5px">
-          <button (click)="showInfo()" class="btn"
-                  style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Thông tin bổ sung
-          </button>
-        </li>
-        <li style="margin-left: 5px">
-          <button class="btn" style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Đánh giá</button>
-        </li>
-      </ul>
-      <!-- general form elements -->
-      <div *ngIf="isDescription">
-        <fieldset *ngFor="let product of product" class="product-content"
-                  style="width: 1050px;border: 1px solid #ccc;margin-top: -16px">
-          <br>
-
-
-          <h6 class="content_desc" [innerHTML]="product.content"></h6>
-        </fieldset>
-      </div>
-      <ul *ngIf="isInfo" style="display: flex; list-style: none; margin-left: 20px; margin-top: 20px">
-        <li>
-          <button (click)="showDesc()" class="btn"
-                  style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Mô Tả
-          </button>
-        </li>
-        <li style="margin-left: 5px">
-          <button class="btn" style="font-size: 20px; font-weight: bolder">Thông tin bổ sung</button>
-        </li>
-
-        <li style="margin-left: 5px">
-          <button class="btn" style="font-size: 20px; background: #e7eff2; border: 1px solid #e7eff2">Đánh giá</button>
-        </li>
-      </ul>
-      <!-- general form elements -->
-      <div *ngIf="isInfo">
-        <fieldset *ngFor="let product of product" class="product-content"
-                  style="width: 1050px;height:330px ; border: 1px solid #ccc;margin-top: -16px">
-          <br>
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p style="font-size: 20px; font-weight: bolder; color: #212529">
-                  DUNG TÍCH </p>
-                <span class="right"
-                      style="font-size: 20px; color: black">{{product.capacity}}ml</span>
-
-              </a>
-              <hr style="border-top: 1px solid grey">
-
-            </li>
-            <li class="nav-item">
-              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p style="font-size: 20px; font-weight: bolder; color: #212529">
-                  GIỐNG NHO </p>
-                <span class="right"
-                      style="font-size: 20px; color: orange">{{product.grape}}</span>
-
-              </a>
-              <hr style="border-top: 1px solid grey">
-
-            </li>
-            <li class="nav-item">
-              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p style="font-size: 20px; font-weight: bolder; color: #212529">
-                  LOẠI VANG </p>
-                <span class="right"
-                      style="font-size: 20px; color: orange">{{product.type}}</span>
-
-              </a>
-              <hr style="border-top: 1px solid grey">
-
-            </li>
-            <li class="nav-item">
-              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p style="font-size: 20px; font-weight: bolder; color: #212529">
-                  NHÀ SẢN XUẤT </p>
-                <span class="right"
-                      style="font-size: 20px; color: orange">{{product.producer}}</span>
-
-              </a>
-              <hr style="border-top: 1px solid grey">
-
-            </li>
-            <li class="nav-item">
-              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p style="font-size: 20px; font-weight: bolder; color: #212529">
-                  NỒNG ĐỘ </p>
-                <span class="right"
-                      style="font-size: 20px; color: black">{{product.concentration}}%</span>
-
-              </a>
-              <hr style="border-top: 1px solid grey">
-
-            </li>
-            <li class="nav-item">
-              <a style="height: 20px" href="pages/calendar.html" class="nav-link">
-                <p style="font-size: 20px; font-weight: bolder; color: #212529">
-                  VÙNG SẢN XUẤT </p>
-                <span class="right"
-                      style="font-size: 20px; color: orange">{{product.region}}</span>
-
-              </a>
-            </li>
-          </ul>
-
-        </fieldset>
-
+        </div>
       </div>
     </div>
 
@@ -398,7 +264,7 @@
               <hr>
             </li>
             <li class="nav-item" *ngFor="let origin of originDTOList">
-              <a style="height: 20px"  class="nav-link" routerLink="/origin/{{origin.id}}/{{origin.name}}">
+              <a style="height: 20px" routerLink="/origin/{{origin.id}}/{{origin.name}}" class="nav-link">
                 <p style="font-size: 15px">
                   {{origin.name}}
                   <span class="badge badge-info right"

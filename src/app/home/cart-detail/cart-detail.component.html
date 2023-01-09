@@ -116,7 +116,7 @@
         <div class="dropdown">
           <h5 class="dropbtn">RƯỢU VANG NGOẠI <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">
-            <a id="brand-name" *ngFor="let origin of originList">{{origin.name}}
+            <a id="brand-name" *ngFor="let origin of originList" routerLink="/origin/{{origin.id}}/{{origin.name}}">{{origin.name}}
               <hr style="border-top: 1px solid black">
             </a>
           </div>
@@ -126,7 +126,7 @@
         <div class="dropdown">
           <h5 class="dropbtn">RƯỢU VANG NGON <i style="font-size: 15px" class="fa-solid fa-caret-down"></i></h5>
           <div class="dropdown-content" style="width: 300px">
-            <a *ngFor="let type of typeList">{{type.name}}
+            <a *ngFor="let type of typeList" routerLink="/type/{{type.id}}/{{type.name}}">{{type.name}}
               <hr style="border-top: 1px solid black">
             </a>
           </div>

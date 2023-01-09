@@ -65,6 +65,7 @@ export class EditProductComponent implements OnInit {
       this.productForm = new FormGroup({
         name: new FormControl(data.name, [Validators.required]),
         price: new FormControl(data.price, [Validators.required]),
+        newPrice: new FormControl(data.newPrice, [Validators.required]),
         quantity: new FormControl(data.quantity, [Validators.required]),
         description: new FormControl(data.description, [Validators.required]),
         image: new FormControl(data.image, [Validators.required]),
@@ -149,6 +150,7 @@ export class EditProductComponent implements OnInit {
     const productForm = {
       name: this.productForm.value.name,
       price: this.productForm.value.price,
+      newPrice: this.productForm.value.newPrice,
       quantity: this.productForm.value.quantity,
       content: this.productForm.value.content,
       image: this.imageLink,

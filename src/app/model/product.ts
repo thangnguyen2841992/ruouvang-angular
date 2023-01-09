@@ -5,6 +5,8 @@ export interface Product {
 
   price?: number;
 
+  newPrice?: number;
+
   description?: string;
 
   quantity?: number;

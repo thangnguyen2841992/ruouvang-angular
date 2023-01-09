@@ -62,7 +62,7 @@ body {
 
 .nav__item {
   text-decoration: none;
-  color: orange;
+  color: #fcb900;
   font-size: 20px;
 
 }
@@ -76,7 +76,7 @@ body {
 /*dropdown*/
 .dropbtn {
   cursor: pointer;
-  color: orange;
+  color: #fcb900;
   padding: 20px;
   font-size: 20px;
 }
@@ -319,14 +319,17 @@ a {
   font-size: 18px;
 }
 .dropdown-content a:hover{
-  text-decoration: underline;
-  color:blue;
+  text-decoration: none;
+  font-weight: bolder;
   font-size: 20px;
   margin-left: 10px;
 }
+.dropdown .dropbtn:hover{
+  color: yellow;
+}
 .nav__item h5:hover{
   color: yellow;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 
