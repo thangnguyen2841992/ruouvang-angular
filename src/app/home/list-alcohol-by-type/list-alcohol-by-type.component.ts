@@ -41,6 +41,7 @@ export class ListAlcoholByTypeComponent implements OnInit {
   offset = 0;
   typeId: number;
   typeName: string;
+  totalProduct: number;
 
   constructor(private originService: OriginService,
               private accessoryService: AccessoryService,
@@ -169,6 +170,7 @@ export class ListAlcoholByTypeComponent implements OnInit {
 
   getAllAcoholByOriginIdOfProjectNoPagination() {
     this.productService.getAllAlcoholByOriginIdNoPaginationOfProject(this.typeId).subscribe((data) => {
+      this.totalProduct = data.length;
       this.totalPage = Math.ceil(data.length / 10);
       if (this.totalPage === 0) {
         this.currentPage = 0;
